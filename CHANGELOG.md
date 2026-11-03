@@ -5,6 +5,13 @@
 > la build più alta è la più recente. Versione e build sono riportati nel nome del file APK
 > (es. `WoundAppDocs_v1.0_build32.apk`) e in app (schermata Backup).
 
+## [1.6.5-docs] · 2026-11-03
+
+Versione **1.6.5-docs** (versionCode 56). Aggiornamento di sicurezza.
+
+- **Libreria del database aggiornata**: SQLCipher per Android 4.17.0 (SQLite 3.53.3) al posto di android-database-sqlcipher 4.5.4, dismessa, con SQLite 3.41.2 del 2023 e dieci CVE note di SQLite (fra cui CVE-2025-6965, CVE-2025-7709, CVE-2026-11822, CVE-2026-11824). Servono SQL scritto dall'attaccante o un database costruito apposta, che l'app non accetta: è un aggiornamento preventivo. Stesso formato dei database e stessa chiave: i dati esistenti si aprono senza conversioni. Il recupero dei vecchi database a chiave nulla ora fa il rekey con gli stessi byte che usa l'apertura.
+- Controllo di tutte le 108 librerie sul database pubblico OSV il 3/11/2026: nessun'altra vulnerabilità nota.
+
 ## [1.6.4-docs] · 2026-11-03
 
 Versione **1.6.4-docs** (versionCode 55). Prima build di rilascio firmata con la chiave di rilascio (le precedenti erano build di debug).

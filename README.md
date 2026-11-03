@@ -4,7 +4,7 @@
 
 A concept of how a wound documentation app should be: photos, measurements, dressings and scale scores over time, all on the phone. · Un concept di come dovrebbe essere un'app per documentare le lesioni: foto, misure, medicazioni e punteggi delle scale nel tempo, tutto sul telefono.
 
-Version 1.6.4-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
+Version 1.6.5-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
 
 <p align="center">
   <a href="https://github.com/Daveide90/woundapp-docs/releases/latest/download/WoundAppDocs.apk"><img src="docs/pulsante-download.svg" width="340" alt="Download APK · Scarica l'APK"></a>
@@ -72,6 +72,16 @@ The images on this page are an HTML mockup of the interface, not screenshots: th
 
 Details in [SECURITY.md](SECURITY.md) and [PRIVACY_POLICY.md](PRIVACY_POLICY.md).
 
+### How I approached security
+
+**Secure by design.** Patient data never leave the phone: no Internet permission, no server, no account, no analytics. The database is encrypted with SQLCipher and opened only after the fingerprint or phone credential; photos are encrypted one by one; backups are encrypted with a password; screenshots, Android cloud backup and device transfer are blocked.
+
+**Hardened as far as I could.** Database key protected by the Android Keystore, session closed after 5 minutes of inactivity, backups with AES-256-GCM and PBKDF2 raised to 600,000 iterations, size and format checks on imported backups, release builds without logs, minimal permissions (biometrics only), a warning on rooted phones, export file names without patient names and every export recorded in the audit log. On 3 November 2026 the database library was moved to the maintained SQLCipher for Android 4.17.0 (SQLite 3.53.3), closing ten known SQLite CVEs of the old one.
+
+**Tested with automated attacks by AI, in several rounds.** From May to November 2026 groups of AI agents reviewed the app as an attacker would, in several cycles, and a second group re-checked the first group's findings from scratch: reading data without the key, getting past the login, forged or oversized backups, data left in memory or in temporary files. Confirmed weaknesses were fixed; encryption, backup and input checks are covered by automated tests.
+
+**Limits.** Not an independent professional audit or a certification. A known open point: the database key is not yet cryptographically bound to the fingerprint (the lock is enforced by the app); it is listed in [SECURITY.md](SECURITY.md), where weaknesses can be reported privately.
+
 ### Install
 
 Tap **Download APK** at the top of this page on an Android phone (Android 11 or later), open the file and, when Android asks, allow installation from your browser or file manager. The app is not on Google Play yet. The SHA-256 fingerprint of each APK is in the release notes, to check that the file is the original. If you have an earlier test build, make an encrypted backup, uninstall it and then install this one: the signature has changed.
@@ -138,6 +148,16 @@ Le immagini di questa pagina sono un mockup HTML dell'interfaccia, non catture d
 | Permessi | Solo la biometria. |
 
 Dettagli in [SECURITY.md](SECURITY.md) e [PRIVACY_POLICY.md](PRIVACY_POLICY.md).
+
+### Come ho affrontato la sicurezza
+
+**Sicura fin dal progetto.** I dati dei pazienti non escono mai dal telefono: nessun permesso Internet, nessun server, nessun account, nessuna statistica. Il database è cifrato con SQLCipher e si apre solo dopo l'impronta o la credenziale del telefono; le foto sono cifrate una per una; i backup sono cifrati con una password; screenshot, backup di Android e trasferimento fra telefoni sono bloccati.
+
+**Rinforzata finché ho potuto.** Chiave del database protetta dal Keystore di Android, sessione chiusa dopo 5 minuti di inattività, backup con AES-256-GCM e PBKDF2 portato a 600.000 iterazioni, controlli di misura e formato sui backup importati, build di rilascio senza log, permessi al minimo (solo la biometria), avviso sui telefoni con root, nomi dei file esportati senza il nome del paziente e ogni esportazione scritta nel registro attività. Il 3 novembre 2026 la libreria del database è passata a SQLCipher per Android 4.17.0 (SQLite 3.53.3), mantenuta, che chiude dieci CVE note di SQLite della vecchia.
+
+**Messa alla prova con attacchi automatici di un'IA, in più cicli.** Da maggio a novembre 2026 gruppi di agenti di intelligenza artificiale hanno esaminato l'app come farebbe un attaccante, in più giri, e un secondo gruppo ha ricontrollato da zero i rilievi del primo: leggere i dati senza la chiave, superare l'accesso, backup falsificati o enormi, dati rimasti in memoria o nei file temporanei. Le debolezze confermate sono state corrette; cifratura, backup e controlli sui dati inseriti sono coperti da prove automatiche.
+
+**Limiti.** Non è una revisione professionale indipendente né una certificazione. Un punto aperto noto: la chiave del database non è ancora legata crittograficamente all'impronta (il blocco lo applica l'app); è scritto in [SECURITY.md](SECURITY.md), dove si possono segnalare le debolezze in privato.
 
 ### Installare
 

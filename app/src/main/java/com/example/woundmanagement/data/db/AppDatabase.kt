@@ -9,8 +9,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.woundmanagement.data.db.dao.*
 import com.example.woundmanagement.data.db.entity.*
 import com.example.woundmanagement.security.DatabaseKeyManager
-import net.sqlcipher.database.SQLiteDatabase
-import net.sqlcipher.database.SupportFactory
+import net.zetetic.database.sqlcipher.SQLiteDatabase
+import net.zetetic.database.sqlcipher.SupportOpenHelperFactory
 
 @Database(
     entities = [
@@ -62,6 +62,9 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): AppDatabase {
+            // SQLCipher per Android (net.zetetic:sqlcipher-android) carica la sua
+            // libreria nativa a mano, prima di qualunque apertura.
+            System.loadLibrary("sqlcipher")
             val passphrase = DatabaseKeyManager.getOrCreatePassphrase(context)
 
             // Se esiste un vecchio DB non cifrato, lo elimina per ricominciare cifrato.
@@ -74,9 +77,10 @@ abstract class AppDatabase : RoomDatabase() {
             // passphrase reale prima che Room apra il database.
             migrateZeroKeyIfNeeded(context, passphrase)
 
-            // NB: NON azzerare qui la passphrase. SupportFactory ne tiene il riferimento
-            // e apre il DB in modo lazy: la azzera da sé (clearPassphrase=true) DOPO l'open.
-            val factory = SupportFactory(passphrase)
+            // NB: NON azzerare qui la passphrase. La factory ne tiene il riferimento e
+            // apre il DB in modo lazy. Gli stessi byte di prima (SupportFactory della
+            // vecchia libreria): i database esistenti si aprono senza conversioni.
+            val factory = SupportOpenHelperFactory(passphrase)
 
             return Room.databaseBuilder(
                 context.applicationContext,
@@ -295,10 +299,9 @@ abstract class AppDatabase : RoomDatabase() {
          *  2. altrimenti prova con la chiave nulla legacy → se funziona, fa il rekey;
          *  3. se nessuna delle due apre, lascia il file intatto (Room gestirà l'errore).
          *
-         * Il rekey usa la passphrase come char[] ASCII: poiché la passphrase è la
-         * stringa Base64 (solo ASCII), getBytes(char[]) in UTF-8 produce esattamente
-         * gli stessi byte passati a SupportFactory(byte[]), garantendo che il DB resti
-         * apribile dopo la migrazione.
+         * Il rekey usa gli stessi byte della passphrase che riceve la factory di
+         * Room (changePassword(byte[])), garantendo che il DB resti apribile dopo la
+         * migrazione.
          */
         private const val MIGRATION_FLAGS = "db_migration_flags"
         private const val FLAG_ZEROKEY_MIGRATED = "zerokey_migrated_v2"
@@ -313,7 +316,7 @@ abstract class AppDatabase : RoomDatabase() {
                 flags.edit().putBoolean(FLAG_ZEROKEY_MIGRATED, true).apply()
                 return
             }
-            SQLiteDatabase.loadLibs(context)
+            System.loadLibrary("sqlcipher")
 
             // 1. La passphrase reale apre già il DB? (installazioni già corrette)
             if (opensWith(dbFile.path, passphrase)) {
@@ -325,11 +328,11 @@ abstract class AppDatabase : RoomDatabase() {
             val zeroKey = ByteArray(32)
             var db: SQLiteDatabase? = null
             try {
-                db = SQLiteDatabase.openOrCreateDatabase(dbFile.path, zeroKey, null)
+                db = SQLiteDatabase.openOrCreateDatabase(dbFile, zeroKey, null, null)
                 // Forza la validazione della chiave: con chiave errata qui lancia.
-                db.rawQuery("SELECT count(*) FROM sqlite_master", null).use { it.moveToFirst() }
-                // 3. Rekey alla passphrase reale (char[] ASCII = stessi byte di SupportFactory).
-                db.changePassword(String(passphrase, Charsets.US_ASCII).toCharArray())
+                db.rawQuery("SELECT count(*) FROM sqlite_master").use { it.moveToFirst() }
+                // 3. Rekey alla passphrase reale: gli stessi byte che riceve la factory.
+                db.changePassword(passphrase.copyOf())
                 flags.edit().putBoolean(FLAG_ZEROKEY_MIGRATED, true).apply()
             } catch (_: Exception) {
                 // Né reale né zero: file non riconducibile a questo schema di chiavi.
@@ -343,8 +346,8 @@ abstract class AppDatabase : RoomDatabase() {
         private fun opensWith(path: String, key: ByteArray): Boolean {
             var db: SQLiteDatabase? = null
             return try {
-                db = SQLiteDatabase.openOrCreateDatabase(path, key.copyOf(), null)
-                db.rawQuery("SELECT count(*) FROM sqlite_master", null).use { it.moveToFirst() }
+                db = SQLiteDatabase.openOrCreateDatabase(java.io.File(path), key.copyOf(), null, null)
+                db.rawQuery("SELECT count(*) FROM sqlite_master").use { it.moveToFirst() }
                 true
             } catch (_: Exception) {
                 false

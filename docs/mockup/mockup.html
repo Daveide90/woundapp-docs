@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=412">
 <title>WoundApp Docs · Mockup dell'interfaccia</title>
 <!--
-  Mockup statico dell'interfaccia di WoundApp Docs 1.6.4-docs (ramo v1.1-audit-fix).
+  Mockup statico dell'interfaccia di WoundApp Docs 1.6.5-docs (ramo v1.1-audit-fix).
   L'app reale blocca le schermate (FLAG_SECURE): questo file ricostruisce le schermate
   dal codice Compose. Nessuna foto reale: solo riquadri segnaposto. Dati inventati.
   Una schermata per #hash, es. mockup.html#s03. Nessuna risorsa esterna.
@@ -692,7 +692,7 @@ SCREENS.s12 = () => {
 /* 13 · Backup cifrato */
 SCREENS.s13 = () => phone(`${mdr()}${topBar("Crea backup", "")}
     <div class="scrollwrap"><div class="col" style="padding:16px;gap:16px">
-      <div class="t-lsm onsv">WoundApp 1.6.4-docs (build 55)</div>
+      <div class="t-lsm onsv">WoundApp 1.6.5-docs (build 56)</div>
       <div class="card" style="background:#F2F1FF;padding:16px;flex:none">
         <div class="row">${ic("info", 24, C.primary)}<span class="t-tm f1" style="margin-left:8px">Informazioni</span>${ic("expless", 24, C.onSurface)}</div>
         ${sp(8)}<div class="t-bs">Il backup include tutti i pazienti, le lesioni, le medicazioni, le scale di valutazione, le foto e il registro attività. Il file è protetto con crittografia AES-256.<br><br>Attenzione: il file di backup contiene dati sanitari sensibili. L'operatore è responsabile della custodia sicura del file esportato.</div>
@@ -720,7 +720,7 @@ function settingsCards() {
     <div class="card" style="padding:16px"><div class="t-tm">Lingua</div>${sp(8)}
       <div style="display:flex;flex-wrap:wrap;column-gap:8px">${chip("Auto")}${chip("Italiano", true)}${chip("English")}${chip("Français")}${chip("Español")}</div></div>
     <div class="card row" style="padding:16px">${ic("public", 24, C.onSurface)}<div style="margin-left:12px"><div class="t-tm">Area geografica / Giurisdizione</div><div class="t-bm onsv">Unione Europea / SEE</div></div></div>
-    <div class="card" style="padding:16px"><div class="t-tm">Informazioni App</div>${sp(8)}${infoRow("Nome", "WoundApp")}${infoRow("Versione", "1.6.4-docs (build 55)")}${infoRow("Tipo", "Strumento di documentazione clinica")}</div>
+    <div class="card" style="padding:16px"><div class="t-tm">Informazioni App</div>${sp(8)}${infoRow("Nome", "WoundApp")}${infoRow("Versione", "1.6.5-docs (build 56)")}${infoRow("Tipo", "Strumento di documentazione clinica")}</div>
     <div class="card" style="padding:16px"><div class="t-tm">Licenza d'uso</div>${sp(8)}<div class="t-bs">Gratuita per il singolo professionista sanitario, per la propria pratica clinica. È vietato l'uso da parte di aziende sanitarie, ospedali e qualsiasi altra organizzazione, pubblica o privata, senza accordo scritto con l'autore.</div>${sp(8)}<div class="t-bs onsv">Licenze istituzionali: dev.davide@pm.me</div></div>
     <div class="card" style="padding:16px"><div class="t-bm">Hai trovato un errore o qualcosa non funziona? Scrivimi: ogni segnalazione aiuta a migliorare l'app.</div>${sp(12)}${ob("bug", "Segnala un problema")}</div>
     <div class="card" style="padding:16px;background:#FAEFF3"><div class="t-tm">Avvertenze importanti</div>${sp(8)}<div class="t-bm">Questa applicazione è uno strumento di DOCUMENTAZIONE clinica per la registrazione e la consultazione cronologica delle lesioni cutanee. NON è un dispositivo medico, NON fornisce diagnosi, raccomandazioni terapeutiche o supporto decisionale clinico.</div>${sp(8)}<div class="t-bm">La composizione tissutale è inserita manualmente dall'operatore. Il professionista sanitario è l'unico responsabile di tutte le valutazioni e decisioni cliniche.</div></div>

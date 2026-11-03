@@ -24,8 +24,8 @@ android {
         targetSdk = 34
         // Numerazione progressiva: versionName = versione "commerciale" (v1.0);
         // versionCode = numero di build, +1 a ogni consegna (il più alto è il più recente).
-        versionCode = 55
-        versionName = "1.6.4-docs"
+        versionCode = 56
+        versionName = "1.6.5-docs"
     }
 
     signingConfigs {
@@ -104,7 +104,14 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
 
     // Security: database encryption + keystore
-    implementation("net.zetetic:android-database-sqlcipher:4.5.4")
+    // Sicurezza (3/11/2026): SQLCipher per Android 4.17.0, con SQLite 3.53.3, al posto di
+    // android-database-sqlcipher 4.5.4 (dismessa, SQLite 3.41.2 del 2023, dieci CVE note di
+    // SQLite). Stesso formato dei database (SQLCipher 4) e stessa chiave in byte. La 4.19 e la
+    // 4.20 chiedono compileSdk 36, che con questo Android Gradle Plugin (8.2) non si può.
+    implementation("net.zetetic:sqlcipher-android:4.17.0@aar")
+    // androidx.sqlite resta 2.4.0: la 2.6 porta Kotlin 2.1, che il compilatore 1.9 di questo
+    // progetto non legge. Verificato sul bytecode (3/11/2026): le 8 classi e gli 11 metodi e
+    // campi di androidx.sqlite usati da SQLCipher 4.17.0 esistono tutti, uguali, nella 2.4.0.
     implementation("androidx.sqlite:sqlite:2.4.0")
     implementation("androidx.security:security-crypto:1.1.0")
 

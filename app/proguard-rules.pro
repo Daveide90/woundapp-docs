@@ -3,9 +3,7 @@
 -keep class com.example.woundmanagement.data.db.dao.** { *; }
 -keepclassmembers class * extends androidx.room.RoomDatabase { *; }
 
-# SQLCipher
--keep class net.sqlcipher.** { *; }
--keep class net.sqlcipher.database.** { *; }
+# SQLCipher per Android (net.zetetic.database): le regole arrivano con la libreria.
 
 # Security Crypto / EncryptedSharedPreferences
 -keep class androidx.security.crypto.** { *; }
