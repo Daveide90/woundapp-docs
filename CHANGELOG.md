@@ -5,6 +5,12 @@
 > la build più alta è la più recente. Versione e build sono riportati nel nome del file APK
 > (es. `WoundAppDocs_v1.0_build32.apk`) e in app (schermata Backup).
 
+## [1.6.6-docs] · 2026-11-03
+
+Versione **1.6.6-docs** (versionCode 57).
+
+- **Correzione: selettori del confronto foto leggibili.** In «Confronta», i campi «Foto 1» e «Foto 2» avevano testo, etichetta e bordo scuri sullo sfondo nero: ora sono chiari. Segnalato dalla prova sul telefono.
+
 ## [1.6.5-docs] · 2026-11-03
 
 Versione **1.6.5-docs** (versionCode 56). Aggiornamento di sicurezza.

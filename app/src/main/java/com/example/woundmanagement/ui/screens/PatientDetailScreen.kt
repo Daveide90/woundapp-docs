@@ -1559,6 +1559,18 @@ private fun ComparePhotoSelector(
             onValueChange = {}, readOnly = true, label = { Text(label) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
             textStyle = MaterialTheme.typography.bodySmall,
+            // Il confronto sta su fondo nero: testo, etichetta, bordo e freccia chiari
+            // (con i colori di serie il testo era scuro su nero, illeggibile).
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color.White,
+                unfocusedTextColor = Color.White,
+                focusedLabelColor = Color.White,
+                unfocusedLabelColor = Color.White.copy(alpha = 0.8f),
+                focusedBorderColor = Color.White,
+                unfocusedBorderColor = Color.White.copy(alpha = 0.6f),
+                focusedTrailingIconColor = Color.White,
+                unfocusedTrailingIconColor = Color.White.copy(alpha = 0.8f)
+            ),
             modifier = Modifier.fillMaxWidth().menuAnchor()
         )
         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {

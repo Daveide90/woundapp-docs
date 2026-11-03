@@ -4,7 +4,7 @@
 
 A concept of how a wound documentation app should be: photos, measurements, dressings and scale scores over time, all on the phone. · Un concept di come dovrebbe essere un'app per documentare le lesioni: foto, misure, medicazioni e punteggi delle scale nel tempo, tutto sul telefono.
 
-Version 1.6.5-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
+Version 1.6.6-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
 
 <p align="center">
   <a href="https://github.com/Daveide90/woundapp-docs/releases/latest/download/WoundAppDocs.apk"><img src="docs/pulsante-download.svg" width="340" alt="Download APK · Scarica l'APK"></a>
