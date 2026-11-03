@@ -46,7 +46,7 @@ Professionisti sanitari soggetti al segreto professionale ai sensi dell'Art. 9(3
 | Linguaggio | Kotlin | 1.9.20 |
 | UI Framework | Jetpack Compose | BOM 2024.02.02 |
 | Design System | Material 3 | (da BOM) |
-| Database | Room + SQLCipher | Room 2.6.1, SQLCipher 4.5.4 |
+| Database | Room + SQLCipher | Room 2.6.1, SQLCipher per Android 4.17.0 (SQLite 3.53.3), dalla 1.6.5-docs |
 | Crittografia | AndroidX Security Crypto | 1.1.0 (stabile) |
 | Autenticazione | AndroidX Biometric | 1.1.0 |
 | Navigazione | Navigation Compose | 2.7.6 |
@@ -121,7 +121,7 @@ L'app **non** contiene alcuna tabella o guida che associ lo stato della ferita a
 
 | Parametro | Valore |
 |-----------|--------|
-| Libreria | SQLCipher 4.5.4 |
+| Libreria | SQLCipher per Android 4.17.0 (`net.zetetic:sqlcipher-android`, SQLite 3.53.3), dalla 1.6.5-docs; fino alla 1.6.4 android-database-sqlcipher 4.5.4, dismessa |
 | Algoritmo | AES-256-CBC (default SQLCipher) |
 | Lunghezza chiave | 256 bit (32 byte), generata con `java.security.SecureRandom` |
 | Storage chiave | EncryptedSharedPreferences |
