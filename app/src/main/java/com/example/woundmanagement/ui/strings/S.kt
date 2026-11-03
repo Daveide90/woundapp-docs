@@ -356,6 +356,14 @@ object S {
     val exportInProgress: String @Composable get() = loc("Esportazione in corso...", "Export in progress...", "Exportation en cours...", "Exportación en curso...")
     val exportError: String @Composable get() = loc("Errore esportazione", "Export error", "Erreur d'exportation", "Error de exportación")
     val sharePdf: String @Composable get() = loc("Condividi PDF", "Share PDF", "Partager le PDF", "Compartir PDF")
+    val pdfClearTitle: String @Composable get() = loc("Il PDF non è cifrato", "The PDF is not encrypted", "Le PDF n'est pas chiffré", "El PDF no está cifrado")
+    val pdfClearText: String @Composable get() = loc(
+        "Il report contiene nomi, codice fiscale e foto del paziente in chiaro. Condividilo solo con chi deve riceverlo e per canali previsti dalla tua struttura.",
+        "The report contains the patient's names, tax code and photos in plain form. Share it only with whoever must receive it, through channels approved by your organisation.",
+        "Le rapport contient les noms, le code fiscal et les photos du patient en clair. Partagez-le uniquement avec le destinataire prévu, par les canaux prévus par votre structure.",
+        "El informe contiene nombres, código fiscal y fotos del paciente sin cifrar. Compártelo solo con quien deba recibirlo, por los canales previstos por tu centro."
+    )
+    val pdfClearContinue: String @Composable get() = loc("Crea il PDF", "Create the PDF", "Créer le PDF", "Crear el PDF")
     val sharePatientBackup: String @Composable get() = loc("Condividi backup paziente", "Share patient backup", "Partager la sauvegarde du patient", "Compartir copia del paciente")
     val patientBackupPasswordTitle: String @Composable get() = loc("Password backup paziente", "Patient backup password", "Mot de passe de la sauvegarde du patient", "Contraseña de la copia del paciente")
     val patientBackupPasswordHint: String @Composable get() = loc("Il file sarà cifrato. Per importarlo serve la stessa password.", "The file will be encrypted. The same password is needed to import it.", "Le fichier sera chiffré. Le même mot de passe est nécessaire pour l'importer.", "El archivo se cifrará. Se necesita la misma contraseña para importarlo.")

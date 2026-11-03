@@ -4,7 +4,7 @@
 
 A concept of how a wound documentation app should be: photos, measurements, dressings and scale scores over time, all on the phone. · Un concept di come dovrebbe essere un'app per documentare le lesioni: foto, misure, medicazioni e punteggi delle scale nel tempo, tutto sul telefono.
 
-Version 1.6.6-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
+Version 1.6.7-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
 
 <p align="center">
   <a href="https://github.com/Daveide90/woundapp-docs/releases/latest/download/WoundAppDocs.apk"><img src="docs/pulsante-download.svg" width="340" alt="Download APK · Scarica l'APK"></a>
@@ -51,7 +51,9 @@ WoundApp Docs is a concept of how an app should help a nurse or a clinician docu
 
 ### Concept, intended use and responsibility
 
-WoundApp Docs is a concept: it shows, with software that works, how a wound documentation app for healthcare professionals should be. It is not a finished or certified product. **It is not a medical device** under Regulation (EU) 2017/745: it does not diagnose, treat, prevent or monitor any condition, and it does not give clinical advice. Scores are plain sums of the items entered; tissue percentages are typed in by the professional. Clinical decisions, and the responsibility for them, stay with the professional. **The author takes no responsibility for how the app is used**, for the data entered or for any consequence of its use, to the extent permitted by law: the app is offered free of charge, as is, without any warranty (see the [LICENSE](LICENSE)). The intended-use analysis is in [`docs/valutazione/`](docs/valutazione/).
+WoundApp Docs is a concept: it shows, with software that works, how a wound documentation app for healthcare professionals should be. It is not a finished or certified product. **It is not a medical device** under Regulation (EU) 2017/745: it does not diagnose, treat, prevent or monitor any condition, and it does not give clinical advice. Scores are plain sums of the items entered; tissue percentages are typed in by the professional. Clinical decisions, and the responsibility for them, stay with the professional. **The author takes no responsibility for how the app is used**, for the data entered or for any consequence of its use, to the extent permitted by law: the app is offered free of charge, as is, without any warranty (see the [LICENSE](LICENSE)). The intended-use analysis is being updated to the current version and will be published when it is ready.
+
+**Who may use it.** The app suits a self-employed professional, who is the data controller. A nurse or doctor employed by a hospital or care home documents patients of that organisation, which is the data controller: using the app on a personal phone needs the organisation's authorisation and must follow its rules.
 
 Known issue: on Android 9 and 10 the app currently closes at start; use Android 11 or later.
 
@@ -67,7 +69,7 @@ The images on this page are an HTML mockup of the interface, not screenshots: th
 | Photos | Encrypted on import (AES-256-GCM), random file names. No in-app camera and no photo permission: the system picker hands over only the chosen photos. |
 | Access | Fingerprint or phone credential at start; session ends after 5 minutes of inactivity; warning on rooted phones. |
 | Backup | PBKDF2-HMAC-SHA256 with 600,000 iterations and AES-256-GCM; password of at least 12 characters. Android backup and device transfer are off. |
-| Screen | Screenshots and screen recording blocked in release builds. |
+| Screen | Screenshots, screen recording and the recent-apps preview are always blocked. |
 | Permissions | Biometrics only. |
 
 Details in [SECURITY.md](SECURITY.md) and [PRIVACY_POLICY.md](PRIVACY_POLICY.md).
@@ -96,7 +98,7 @@ I am not a professional software developer: I am an enthusiast and I build apps 
 ./gradlew assembleDebug
 ```
 
-Android Studio with JDK 17. Kotlin, Jetpack Compose, Material 3, Room with SQLCipher. The release signature reads `keystore.properties`, which is not in the repository. The latest version is on the `v1.1-audit-fix` branch.
+Android Studio with JDK 17. Kotlin, Jetpack Compose, Material 3, Room with SQLCipher. The release signature reads `keystore.properties`, which is not in the repository.
 
 ### Licence
 
@@ -128,7 +130,9 @@ WoundApp Docs è un concept di come un'app dovrebbe aiutare l'infermiere o il me
 
 ### Concept, uso previsto e responsabilità
 
-WoundApp Docs è un concept: mostra, con un software che funziona, come dovrebbe essere un'app di documentazione delle lesioni per professionisti sanitari. Non è un prodotto finito né certificato. **Non è un dispositivo medico** ai sensi del regolamento (UE) 2017/745: non fa diagnosi, non tratta, non previene né monitora malattie e non dà consigli clinici. I punteggi sono semplici somme degli item inseriti; le percentuali dei tessuti le scrive il professionista. Le decisioni cliniche, e la loro responsabilità, restano al professionista. **L'autore non si assume alcuna responsabilità per il modo in cui l'app viene usata**, per i dati inseriti né per le conseguenze del suo uso, nei limiti consentiti dalla legge: l'app è offerta gratis, così com'è, senza garanzie di alcun tipo (vedi la [LICENSE](LICENSE)). L'analisi della destinazione d'uso è in [`docs/valutazione/`](docs/valutazione/).
+WoundApp Docs è un concept: mostra, con un software che funziona, come dovrebbe essere un'app di documentazione delle lesioni per professionisti sanitari. Non è un prodotto finito né certificato. **Non è un dispositivo medico** ai sensi del regolamento (UE) 2017/745: non fa diagnosi, non tratta, non previene né monitora malattie e non dà consigli clinici. I punteggi sono semplici somme degli item inseriti; le percentuali dei tessuti le scrive il professionista. Le decisioni cliniche, e la loro responsabilità, restano al professionista. **L'autore non si assume alcuna responsabilità per il modo in cui l'app viene usata**, per i dati inseriti né per le conseguenze del suo uso, nei limiti consentiti dalla legge: l'app è offerta gratis, così com'è, senza garanzie di alcun tipo (vedi la [LICENSE](LICENSE)). L'analisi della destinazione d'uso è in aggiornamento alla versione attuale e sarà pubblicata quando sarà pronta.
+
+**Chi può usarla.** L'app è adatta al libero professionista, che è titolare dei dati. L'infermiere o il medico dipendente di un ospedale o di una struttura documenta pazienti della struttura, che è la titolare: usare l'app sul telefono personale richiede l'autorizzazione della struttura e il rispetto delle sue regole.
 
 Problema noto: su Android 9 e 10 oggi l'app si chiude all'avvio; serve Android 11 o successivo.
 
@@ -144,7 +148,7 @@ Le immagini di questa pagina sono un mockup HTML dell'interfaccia, non catture d
 | Foto | Cifrate all'importazione (AES-256-GCM), nomi dei file casuali. Nessuna fotocamera nell'app e nessun permesso sulle foto: il selettore di sistema consegna solo le foto scelte. |
 | Accesso | Impronta o credenziale del telefono all'avvio; la sessione si chiude dopo 5 minuti di inattività; avviso sui telefoni con root. |
 | Backup | PBKDF2-HMAC-SHA256 a 600.000 iterazioni e AES-256-GCM; password di almeno 12 caratteri. Backup di Android e trasferimento fra telefoni spenti. |
-| Schermo | Screenshot e registrazione dello schermo bloccati nelle build di rilascio. |
+| Schermo | Screenshot, registrazione dello schermo e anteprima fra le app recenti sempre bloccati. |
 | Permessi | Solo la biometria. |
 
 Dettagli in [SECURITY.md](SECURITY.md) e [PRIVACY_POLICY.md](PRIVACY_POLICY.md).
@@ -173,7 +177,7 @@ Non sono un programmatore professionista ma un appassionato, che sviluppa app ne
 ./gradlew assembleDebug
 ```
 
-Android Studio con JDK 17. Kotlin, Jetpack Compose, Material 3, Room con SQLCipher. La firma di rilascio legge `keystore.properties`, che non sta nel repository. L'ultima versione è sul ramo `v1.1-audit-fix`.
+Android Studio con JDK 17. Kotlin, Jetpack Compose, Material 3, Room con SQLCipher. La firma di rilascio legge `keystore.properties`, che non sta nel repository.
 
 ### Licenza
 

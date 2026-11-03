@@ -113,6 +113,8 @@ fun PatientDetailScreen(
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
     var showExportMenu by remember { mutableStateOf(false) }
+    // Avviso prima del PDF: è in chiaro per forza (revisione esterna del 3/11, W6)
+    var showPdfClearWarning by remember { mutableStateOf(false) }
     var showBackupPasswordDialog by remember { mutableStateOf(false) }
     var isExporting by remember { mutableStateOf(false) }
     val patientId = patient?.id ?: -1L
@@ -256,7 +258,7 @@ fun PatientDetailScreen(
                             leadingIcon = { Icon(Icons.Default.PictureAsPdf, contentDescription = null) },
                             onClick = {
                                 showExportMenu = false
-                                exportPdf()
+                                showPdfClearWarning = true
                             }
                         )
                         DropdownMenuItem(
@@ -265,6 +267,22 @@ fun PatientDetailScreen(
                             onClick = {
                                 showExportMenu = false
                                 showBackupPasswordDialog = true
+                            }
+                        )
+                    }
+                    if (showPdfClearWarning) {
+                        AlertDialog(
+                            onDismissRequest = { showPdfClearWarning = false },
+                            title = { Text(S.pdfClearTitle) },
+                            text = { Text(S.pdfClearText) },
+                            confirmButton = {
+                                TextButton(onClick = {
+                                    showPdfClearWarning = false
+                                    exportPdf()
+                                }) { Text(S.pdfClearContinue) }
+                            },
+                            dismissButton = {
+                                TextButton(onClick = { showPdfClearWarning = false }) { Text(S.cancel) }
                             }
                         )
                     }

@@ -5,6 +5,17 @@
 > la build più alta è la più recente. Versione e build sono riportati nel nome del file APK
 > (es. `WoundAppDocs_v1.0_build32.apk`) e in app (schermata Backup).
 
+## [1.6.7-docs] · 2026-11-03
+
+Versione **1.6.7-docs** (versionCode 58). Correzioni di sicurezza e di testo da una revisione esterna del codice (nessun cambiamento clinico o di schema dati).
+
+- **Registro attività: le righe arrivate da un backup sono marcate.** Al ripristino le voci del registro contenute nel backup entrano con il prefisso «[da backup]», così non si confondono con le operazioni fatte su questo telefono. Reimportare lo stesso file non le duplica.
+- **Accesso: da Android 11 serve la chiave di sicurezza.** Se la chiave del Keystore legata all'autenticazione non è disponibile, l'accesso si ferma con il messaggio «Sblocco sicuro non disponibile. Riavvia il telefono e riprova.», invece di proseguire senza il controllo crittografico.
+- **Backup aperti da altre app solo come content://.** L'app non si offre più per i link del browser né per i percorsi file://: un backup si apre dal file manager, da «Condividi» o dalla schermata Backup.
+- **Tetto dei 600 MB sempre attivo.** Il file di backup si legge a blocchi e la lettura si ferma oltre i 600 MB anche quando Android non dichiara la dimensione del file.
+- **Avviso prima del report PDF.** «Esporta PDF» ora ricorda che il report contiene nomi, codice fiscale e foto del paziente in chiaro, e va condiviso solo con chi deve riceverlo.
+- **Testi allineati al codice.** README, SECURITY e documentazione tecnica: il blocco delle catture dello schermo è sempre attivo (non solo nelle build di rilascio), l'intestazione autenticata del backup è già implementata; README e informativa chiariscono che il dipendente di una struttura sanitaria deve avere l'autorizzazione della struttura per usare l'app sul telefono personale.
+
 ## [1.6.6-docs] · 2026-11-03
 
 Versione **1.6.6-docs** (versionCode 57).

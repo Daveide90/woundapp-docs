@@ -1,7 +1,7 @@
 # Privacy Policy — WoundApp Docs
 
 **Versione 3 / Version 3**  
-**Ultimo aggiornamento / Last updated: luglio 2026 / July 2026**
+**Ultimo aggiornamento / Last updated: novembre 2026 / November 2026**
 
 ---
 
@@ -18,6 +18,8 @@ L'App e' uno strumento di documentazione clinica. Non fornisce diagnosi, raccoma
 Lo sviluppatore dell'App non riceve dati, non ha accesso ai dati e non opera come responsabile del trattamento ex art. 28 GDPR: e' mero fornitore del software. L'App e' completamente offline: non contiene il permesso INTERNET, non contatta server, non invia analytics, non usa cookie o tracker.
 
 Il titolare del trattamento dei dati personali e' il professionista sanitario o la struttura sanitaria che utilizza l'App, ai sensi del Regolamento UE 2016/679 (GDPR).
+
+Il professionista dipendente di una struttura sanitaria tratta dati di cui e' titolare la struttura: l'uso dell'App su un dispositivo personale richiede l'autorizzazione della struttura e il rispetto delle sue procedure.
 
 ### 3. Dati trattati
 
@@ -111,6 +113,8 @@ The App is a clinical documentation tool. It does not provide diagnoses, persona
 The developer does not receive data, has no access to data, and does not act as a data processor under Article 28 GDPR: the developer is a mere software supplier. The App is fully offline: it has no INTERNET permission, contacts no servers, sends no analytics, uses no cookies or trackers.
 
 The data controller is the healthcare professional or facility using the App, under EU Regulation 2016/679 (GDPR).
+
+A professional employed by a healthcare facility processes data whose controller is the facility: using the App on a personal device requires the facility's authorisation and compliance with its procedures.
 
 ### 3. Data processed
 

@@ -1,6 +1,6 @@
 # Security Policy — WoundApp Docs
 
-**Versione app:** v1.6.5-docs (versionCode 56) · `com.daveide.wounddocs` · aggiornato a novembre 2026 (libreria del database: SQLCipher per Android 4.17.0, SQLite 3.53.3; dipendenze controllate sul database OSV il 3/11/2026)
+**Versione app:** v1.6.7-docs (versionCode 58) · `com.daveide.wounddocs` · aggiornato a novembre 2026 (libreria del database: SQLCipher per Android 4.17.0, SQLite 3.53.3; dipendenze controllate sul database OSV il 3/11/2026)
 
 > **EN summary** — Coordinated vulnerability disclosure for the WoundApp Docs repository and
 > APK. Report security issues to **dev.davide@pm.me**; expect an acknowledgement and initial
@@ -9,7 +9,7 @@
 > Act (Reg. (EU) 2024/2847, fully applicable December 2027) is tracked as an upcoming
 > obligation. Exports (PDF and single-patient backup) are tracked in the local audit log.
 > Planned hardening: full crypto-binding of the DB key to biometrics (with a re-enrollment
-> recovery strategy) and AAD on the backup header.
+> recovery strategy).
 
 ---
 
@@ -60,7 +60,7 @@ supply-chain dei clienti sanitari.)
   PBKDF2-HMAC-SHA256 600.000 iterazioni + AES-256-GCM, password ≥12 caratteri, limiti
   anti-OOM (600 MB file / 500 MB decompresso).
 - Login biometrico (BIOMETRIC_STRONG) o credenziale dispositivo, CryptoObject su chiave
-  Keystore auth-bound; FLAG_SECURE in release; allowBackup=false; timeout sessione 5 min;
+  Keystore auth-bound; FLAG_SECURE sempre attivo; allowBackup=false; timeout sessione 5 min;
   root detection; R8 in release; firma release da `keystore.properties` (gitignorato).
 - Audit log locale delle principali operazioni su pazienti e sessione, **incluse le
   esportazioni** (`EXPORT_PDF`, `EXPORT_PATIENT_BACKUP`) e le operazioni documentali su
@@ -79,12 +79,13 @@ Dichiarato esplicitamente come **non ancora implementato**:
    auth-bound; il passo successivo è derivare/avvolgere la chiave DB direttamente con una
    chiave Keystore richiedente autenticazione, con una **strategia di recupero documentata
    per il re-enrollment biometrico** (evitare lock-out dei dati clinici).
-2. **AAD sull'header del backup** — autenticare magic/versione/salt/IV come Additional
-   Authenticated Data del GCM, contro manomissioni dell'header.
 
 (L'audit dell'export, in precedenza elencato qui come mancante, è stato **implementato**:
 l'export del report di documentazione PDF e del backup del singolo paziente sono tracciati
 nel registro attività con le azioni `EXPORT_PDF` ed `EXPORT_PATIENT_BACKUP`.)
+
+(L'AAD sull'intestazione del backup, in precedenza elencata qui, è **implementata** dal
+formato v3: magic, versione, sale e IV sono autenticati nel GCM.)
 
 ## 7. Ringraziamenti
 

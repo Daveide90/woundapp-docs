@@ -39,6 +39,34 @@ object BackupManager {
     private const val MAX_DECOMPRESSED_SIZE = 500L * 1024 * 1024 // 500 MB
     private const val MAX_BACKUP_FILE_SIZE = 600L * 1024 * 1024  // tetto sul file cifrato in ingresso (anti-OOM)
 
+    /** Prefisso delle righe del registro arrivate da un backup: si distinguono da quelle fatte qui. */
+    internal const val IMPORTED_AUDIT_PREFIX = "[da backup] "
+
+    /** Una riga di registro del backup, marcata come importata una volta sola (anche da un backup di un backup). */
+    internal fun markImported(a: AuditLogEntity): AuditLogEntity = a.copy(
+        id = 0,
+        details = if (a.details.startsWith(IMPORTED_AUDIT_PREFIX)) a.details else IMPORTED_AUDIT_PREFIX + a.details
+    )
+
+    /** La chiave contro i doppioni: la stessa per la riga originale e per quella importata. */
+    internal fun auditKey(a: AuditLogEntity): List<Any> =
+        listOf(a.timestamp, a.action, a.entityType, a.entityId, a.details.removePrefix(IMPORTED_AUDIT_PREFIX))
+
+    /** Legge al massimo [max] byte: oltre si ferma con un errore, senza caricare il resto (W4). */
+    internal fun readAtMost(input: java.io.InputStream, max: Long): ByteArray {
+        val out = ByteArrayOutputStream()
+        val buffer = ByteArray(64 * 1024)
+        var total = 0L
+        while (true) {
+            val n = input.read(buffer)
+            if (n == -1) break
+            total += n
+            if (total > max) throw IOException("File di backup troppo grande (max ${max / 1024 / 1024} MB)")
+            out.write(buffer, 0, n)
+        }
+        return out.toByteArray()
+    }
+
     data class BackupSummary(
         val patients: Int,
         val wounds: Int,
@@ -385,14 +413,13 @@ object BackupManager {
                 if (painNrsSeen.add(p to s.createdAt)) dao.insertPainNrs(s.copy(id = 0, patientId = p))
             }
 
-            // ── Audit del backup: appeso solo se non già presente (idempotenza: reimportare
-            //    lo stesso file non deve duplicare nulla, registro compreso)
-            val auditSeen = dao.getAllAudit().mapTo(HashSet()) {
-                listOf(it.timestamp, it.action, it.entityType, it.entityId, it.details)
-            }
+            // ── Audit del backup: le righe arrivano marcate «[da backup]», così non si confondono
+            //    con le operazioni fatte su questo telefono (revisione esterna del 3/11, W3).
+            //    Appese solo se non già presenti (reimportare lo stesso file non duplica nulla).
+            val auditSeen = dao.getAllAudit().mapTo(HashSet()) { auditKey(it) }
             for (a in backupAudit) {
-                if (auditSeen.add(listOf(a.timestamp, a.action, a.entityType, a.entityId, a.details)))
-                    dao.insertAudit(a.copy(id = 0))
+                val marcata = markImported(a)
+                if (auditSeen.add(auditKey(marcata))) dao.insertAudit(marcata)
             }
 
             // Foto: scritte PRIMA del commit (siamo ancora dentro withTransaction).
@@ -575,7 +602,8 @@ object BackupManager {
         if (declaredSize > MAX_BACKUP_FILE_SIZE) {
             throw IOException("File di backup troppo grande (max ${MAX_BACKUP_FILE_SIZE / 1024 / 1024} MB)")
         }
-        val rawBytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
+        // Lettura a blocchi con il tetto: vale anche quando Android non dichiara la dimensione (-1).
+        val rawBytes = context.contentResolver.openInputStream(uri)?.use { readAtMost(it, MAX_BACKUP_FILE_SIZE) }
             ?: throw IOException("Impossibile leggere il file di backup")
         val compressed = decrypt(rawBytes, password)
         val plaintext = gzipDecompress(compressed)

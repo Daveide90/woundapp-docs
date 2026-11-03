@@ -175,7 +175,7 @@ Se il Keystore non e' disponibile (es. dopo reset biometrico), le preferenze ven
 
 ### 3.4 Protezione screenshot e screen recording
 
-`FLAG_SECURE` e' impostato in `MainActivity.onCreate()` **nelle build di release** (gate sul tipo di build; nelle build di debug resta disattivo per QA/screenshot). In release impedisce:
+`FLAG_SECURE` e' impostato in `MainActivity.onCreate()` **sempre**, anche nelle build di debug (le schermate per la documentazione si fanno da un mockup). Impedisce:
 - Screenshot (tasto di cattura schermo)
 - Screen recording
 - Visualizzazione nell'app switcher (schermo nero)
@@ -265,7 +265,7 @@ L'audit log e' consultabile da Impostazioni > Registro Attivita'.
 | Classi protette | Room entity/DAO, SQLCipher, Security Crypto, Biometric, Compose |
 | Log produzione | `Log.e()` protetti da `BuildConfig.DEBUG` (non eseguiti in release) |
 | Firma release | `signingConfig` da `keystore.properties` (gitignorato, mai committato) |
-| FLAG_SECURE | Attivo in release (vedi §3.4) |
+| FLAG_SECURE | Sempre attivo (vedi §3.4) |
 | Root detection | Avviso all'utente su dispositivo rooted |
 
 ---

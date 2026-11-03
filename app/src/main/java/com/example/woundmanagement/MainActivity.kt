@@ -48,9 +48,6 @@ class MainActivity : FragmentActivity() {
         extractBackupUri(intent)?.let { importUri.value = it }
     }
 
-    private fun extractBackupUri(intent: Intent?): Uri? = when (intent?.action) {
-        Intent.ACTION_VIEW -> intent.data
-        Intent.ACTION_SEND -> @Suppress("DEPRECATION") (intent.getParcelableExtra(Intent.EXTRA_STREAM) as? Uri)
-        else -> null
-    }
+    private fun extractBackupUri(intent: Intent?): Uri? =
+        com.example.woundmanagement.security.BackupIntent.backupUri(intent)
 }

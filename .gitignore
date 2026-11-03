@@ -26,5 +26,14 @@ release/
 
 # Firma release (segreti, mai committare)
 keystore.properties
-*.jks
-*.keystore
+
+# Segreti locali e file che non devono mai finire su GitHub (revisione esterna del 3/11)
+.env
+.env.*
+*.env
+*.woundbackup
+*.hprof
+*.log
+captures/
+.kotlin/
+.cxx/

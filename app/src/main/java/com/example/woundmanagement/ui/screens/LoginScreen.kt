@@ -1,5 +1,6 @@
 package com.example.woundmanagement.ui.screens
 
+import android.os.Build
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.example.woundmanagement.security.BiometricCryptoManager
+import com.example.woundmanagement.security.LoginCryptoGate
 import com.example.woundmanagement.security.RootDetector
 import com.example.woundmanagement.ui.strings.S
 import com.example.woundmanagement.ui.strings.loc4
@@ -56,6 +58,12 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
     val strGeneric = S.loginErrorGeneric
     val strBiometricTitle = S.loginBiometricTitle
     val strBiometricSubtitle = S.loginBiometricSubtitle
+    val strKeystoreUnavailable = loc4(
+        it = "Sblocco sicuro non disponibile. Riavvia il telefono e riprova.",
+        en = "Secure unlock is not available. Restart the phone and try again.",
+        fr = "Le déverrouillage sécurisé n'est pas disponible. Redémarrez le téléphone et réessayez.",
+        es = "El desbloqueo seguro no está disponible. Reinicia el teléfono e inténtalo de nuevo."
+    )
 
     fun launchBiometric() {
         val authenticators = BIOMETRIC_STRONG or DEVICE_CREDENTIAL
@@ -73,6 +81,14 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
             }
         }
 
+        // Da Android 11 la chiave Keystore legata all'autenticazione è obbligatoria (W2):
+        // senza cipher il prompt non parte, invece di proseguire senza CryptoObject.
+        val cryptoCipher = BiometricCryptoManager.getCipher()
+        if (Build.VERSION.SDK_INT >= 30 && cryptoCipher == null) {
+            errorMessage = strKeystoreUnavailable
+            return
+        }
+
         isAuthenticating = true
         errorMessage = null
 
@@ -83,14 +99,16 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 // Esercita realmente la chiave Keystore auth-bound: il CryptoObject viene
                 // sbloccato dall'autenticazione e doFinal deve riuscire. Se la chiave non è
                 // stata sbloccata (es. hook/bypass del flusso), doFinal lancia e il login NON
-                // prosegue. Su API < 30 il cipher è null e si procede come prima.
-                val cipherUnlocked = try {
+                // prosegue. Da API 30 un cipher assente ferma il login (LoginCryptoGate, W2);
+                // su API < 30 il cipher è null e si procede come prima.
+                val cipherPrepared = result.cryptoObject?.cipher != null
+                val doFinalOk = try {
                     result.cryptoObject?.cipher?.doFinal(LOGIN_TOKEN)
                     true
                 } catch (_: Exception) {
                     false
                 }
-                if (!cipherUnlocked) {
+                if (!LoginCryptoGate.mayProceed(Build.VERSION.SDK_INT, cipherPrepared, doFinalOk)) {
                     errorMessage = strGeneric
                     return
                 }
@@ -134,7 +152,6 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
             .setAllowedAuthenticators(authenticators)
             .build()
 
-        val cryptoCipher = BiometricCryptoManager.getCipher()
         if (cryptoCipher != null) {
             BiometricPrompt(activity, executor, callback)
                 .authenticate(promptInfo, BiometricPrompt.CryptoObject(cryptoCipher))
