@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=412">
+<title>WoundApp Docs · Mockup dell'interfaccia</title>
+<!--
+  Mockup statico dell'interfaccia di WoundApp Docs 1.6.4-docs (ramo v1.1-audit-fix).
+  L'app reale blocca le schermate (FLAG_SECURE): questo file ricostruisce le schermate
+  dal codice Compose. Nessuna foto reale: solo riquadri segnaposto. Dati inventati.
+  Una schermata per #hash, es. mockup.html#s03. Nessuna risorsa esterna.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:412px;height:915px;overflow:hidden;background:#FBF8FF}
+body{font-family:"Roboto","Inter","Liberation Sans",sans-serif;color:#1D1B20;letter-spacing:-0.1px;-webkit-font-smoothing:antialiased}
+svg.ic{display:block;flex:none}
+.phone{position:relative;width:412px;height:915px;overflow:hidden;background:#FBF8FF;display:flex;flex-direction:column}
+.status{height:24px;flex:none;background:#3949AB;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 16px;font-size:13px;font-weight:500;letter-spacing:.2px}
+.status .sicons{display:flex;gap:5px;align-items:center}
+.app{flex:1;position:relative;display:flex;flex-direction:column;overflow:hidden;margin-bottom:18px;background:#FBF8FF}
+.mockup-label{position:absolute;left:0;right:0;bottom:0;height:18px;background:#E6E6EE;color:#5A5D6E;font-size:10.5px;font-weight:500;display:flex;align-items:center;justify-content:center;letter-spacing:.4px;z-index:100;border-top:1px solid #D6D6E0}
+/* tipografia (Type.kt + default M3) */
+.t-tl{font-size:20px;line-height:28px;font-weight:600}
+.t-tm{font-size:16px;line-height:24px;font-weight:500}
+.t-ts{font-size:14px;line-height:20px;font-weight:500}
+.t-bl{font-size:16px;line-height:24px}
+.t-bm{font-size:14px;line-height:20px}
+.t-bs{font-size:12px;line-height:16px;letter-spacing:.1px}
+.t-ll{font-size:14px;line-height:20px;font-weight:500}
+.t-lm{font-size:12px;line-height:16px;font-weight:500;letter-spacing:.2px}
+.t-lsm{font-size:11px;line-height:16px;font-weight:500;letter-spacing:.2px}
+.t-hs{font-size:24px;line-height:32px}
+.onsv{color:#46464F}
+.prim{color:#3949AB}
+.outl{color:#777680}
+.center{text-align:center}
+.row{display:flex;align-items:center}
+.col{display:flex;flex-direction:column}
+.f1{flex:1;min-width:0}
+/* MdrBanner */
+.mdr{flex:none;height:28px;background:#FCE7D9;display:flex;align-items:center;padding:0 16px;gap:8px}
+/* TopAppBar small */
+.topbar{flex:none;height:64px;display:flex;align-items:center;padding:0 4px;background:#FBF8FF}
+.iconbtn{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex:none}
+.topbar .title{flex:1;min-width:0;padding-left:8px}
+/* card */
+.card{background:#E6E0E9;border-radius:12px}
+/* buttons */
+.btn{height:40px;border-radius:20px;background:#3949AB;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:500;line-height:20px;padding:0 24px}
+.btn.outlined{background:transparent;color:#3949AB;border:1px solid #777680}
+.btn.disabled{background:rgba(29,27,32,.12);color:rgba(29,27,32,.38)}
+.tbtn{height:40px;display:inline-flex;align-items:center;gap:4px;padding:0 12px;color:#3949AB;font-size:14px;font-weight:500;border-radius:20px;white-space:nowrap}
+/* outlined text field */
+.otf{position:relative;height:56px;border:1px solid #777680;border-radius:4px;display:flex;align-items:center;padding:0 0 0 16px}
+.otf .lab{position:absolute;left:12px;top:-9px;padding:0 4px;font-size:12px;line-height:16px;color:#46464F;background:var(--bgc,#FBF8FF);letter-spacing:.1px;white-space:nowrap}
+.otf .val{flex:1;min-width:0;font-size:16px;line-height:24px;white-space:nowrap;overflow:hidden}
+.otf .trail{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex:none}
+/* chips */
+.chip{height:32px;border-radius:8px;border:1px solid #777680;display:inline-flex;align-items:center;gap:8px;padding:0 16px;font-size:14px;font-weight:500;color:#46464F;white-space:nowrap}
+.chip.sel{background:#DFE0F9;border-color:transparent;color:#171B2C}
+.chip.sel.icon{padding-left:8px}
+/* nav bar */
+.navbar{position:absolute;left:0;right:0;bottom:0;height:80px;background:#F3EDF7;display:flex}
+.navitem{flex:1;display:flex;flex-direction:column;align-items:center;padding-top:12px}
+.navitem .ind{width:64px;height:32px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.navitem.sel .ind{background:#DFE0F9}
+.navitem .nl{margin-top:4px;font-size:12px;line-height:16px;font-weight:500;letter-spacing:.2px;color:#46464F}
+.navitem.sel .nl{color:#1D1B20}
+/* brand */
+.brandheader{position:relative;overflow:hidden;border-radius:0 0 28px 28px;padding:14px 20px 22px}
+.brandheader > *{position:relative;z-index:1}
+.bubble{position:absolute;border-radius:50%;background:#fff;z-index:0 !important}
+.avatar{width:44px;height:44px;border-radius:14.67px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;line-height:24px;flex:none}
+.tabs{display:flex;gap:5px;padding:5px;background:#EEF0FB;border-radius:16px;margin:8px 16px}
+.tab{flex:1;border-radius:12px;padding:9px 0;text-align:center;font-size:12px;line-height:24px;font-weight:700;color:#7C839C}
+.tab.sel{color:#fff}
+/* placeholders (nessuna foto reale) */
+.ph{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:linear-gradient(135deg,#E8EAF6 0%,#D6DAF0 100%);color:#5C6BC0;overflow:hidden}
+.ph span{font-size:11px;font-weight:600;letter-spacing:.3px;color:#5C6BC0}
+/* slider */
+.slider{position:relative;height:48px;margin:0 8px}
+.slider .trk{position:absolute;left:0;right:0;top:22px;height:4px;border-radius:2px;background:#E3E1EC}
+.slider .act{position:absolute;left:0;top:22px;height:4px;border-radius:2px}
+.slider .thumb{position:absolute;top:14px;width:20px;height:20px;border-radius:50%;margin-left:-10px;box-shadow:0 1px 2px rgba(0,0,0,.3),0 1px 3px 1px rgba(0,0,0,.15)}
+.slider .tick{position:absolute;top:23px;width:2px;height:2px;border-radius:1px;margin-left:-1px}
+/* radio */
+.radio{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex:none}
+.radio i{width:20px;height:20px;border-radius:50%;border:2px solid #46464F;display:flex;align-items:center;justify-content:center}
+.radio.sel i{border-color:#3949AB}
+.radio.sel i::after{content:"";width:10px;height:10px;border-radius:50%;background:#3949AB}
+/* switch */
+.switch{width:52px;height:32px;border-radius:16px;background:#3949AB;position:relative;flex:none}
+.switch::after{content:"";position:absolute;right:4px;top:4px;width:24px;height:24px;border-radius:50%;background:#fff}
+/* menu */
+.menu{position:absolute;background:#F3EDF7;border-radius:4px;padding:8px 0;box-shadow:0 1px 2px rgba(0,0,0,.3),0 2px 6px 2px rgba(0,0,0,.15);z-index:20}
+.menu .mi{height:48px;display:flex;align-items:center;gap:12px;padding:0 12px;font-size:14px;font-weight:500;white-space:nowrap}
+.scrollwrap{flex:1;position:relative;overflow:hidden}
+.divider{height:1px;background:#CAC4D0}
+/* pdf */
+.pdfpage{position:absolute;left:0;top:0;width:595px;height:842px;background:#fff;transform-origin:0 0;color:#243042;font-family:"Roboto","Inter","Liberation Sans",sans-serif;letter-spacing:0}
+.pdfpage .ab{position:absolute}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+"use strict";
+/* ── Icone Material (path 24×24, disegnate inline) ── */
+const I = {
+  back:"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
+  search:"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z",
+  add:"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
+  close:"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z",
+  people:"M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z",
+  settings:"M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z",
+  person:"M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z",
+  share:"M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z",
+  more:"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
+  warning:"M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z",
+  edit:"M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
+  expmore:"M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
+  expless:"M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+  chevron:"M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z",
+  dropdown:"M7 10l5 5 5-5z",
+  done:"M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z",
+  morehoriz:"M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
+  del:"M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z",
+  infoO:"M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z",
+  info:"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z",
+  checkcircle:"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z",
+  download:"M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z",
+  save:"M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z",
+  cloudup:"M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z",
+  visibility:"M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z",
+  public:"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z",
+  history:"M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z",
+  restore:"M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.25 2.52.77-1.28-3.52-2.09V8z",
+  bug:"M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z",
+  filter:"M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z",
+  pdf:"M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z",
+  send:"M2.01 21L23 12 2.01 3 2 10l15 2-15 2z",
+  language:"M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z",
+  calendar:"M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zM7 12h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z",
+  photolib:"M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z",
+  image:"M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z",
+  zoomin:"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z",
+  compare:"M10 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v2h2V1h-2v2zm0 15H5l5-6v6zm9-15h-5v2h5v13l-5-6v9h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z",
+  healing:"M17.73 12.02l3.98-3.98c.39-.39.39-1.02 0-1.41l-4.34-4.34c-.39-.39-1.02-.39-1.41 0l-3.98 3.98L8 2.29C7.8 2.1 7.55 2 7.29 2c-.25 0-.51.1-.7.29L2.25 6.63c-.39.39-.39 1.02 0 1.41l3.98 3.98L2.25 16c-.39.39-.39 1.02 0 1.41l4.34 4.34c.39.39 1.02.39 1.41 0l3.98-3.98 3.98 3.98c.2.2.45.29.71.29.26 0 .51-.1.71-.29l4.34-4.34c.39-.39.39-1.02 0-1.41l-3.99-3.98zM12 9c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-4.71 1.96L3.66 7.34l3.63-3.63 3.62 3.62-3.62 3.63zM10 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm2-4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2.66 9.34l-3.63-3.62 3.63-3.63 3.62 3.62-3.62 3.63z",
+  checklist:"M22 7h-9v2h9V7zm0 8h-9v2h9v-2zM5.54 11L2 7.46l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41L5.54 11zm0 8L2 15.46l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41L5.54 19z",
+  restaurant:"M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z",
+  showchart:"M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z",
+  fingerprint:"M17.81 4.47c-.08 0-.16-.02-.23-.06C15.66 3.42 14 3 12.01 3c-1.98 0-3.86.47-5.57 1.41-.24.13-.54.04-.68-.2-.13-.24-.04-.55.2-.68C7.82 2.52 9.86 2 12.01 2c2.13 0 3.99.47 6.03 1.52.25.13.34.43.21.67-.09.18-.26.28-.44.28zM3.5 9.72c-.1 0-.2-.03-.29-.09-.23-.16-.28-.47-.12-.7.99-1.4 2.25-2.5 3.75-3.27C9.98 4.04 14 4.03 17.15 5.65c1.5.77 2.76 1.86 3.75 3.25.16.22.11.54-.12.7-.23.16-.54.11-.7-.12-.9-1.26-2.04-2.25-3.39-2.94-2.87-1.47-6.54-1.47-9.4.01-1.36.7-2.5 1.7-3.4 2.96-.08.14-.23.21-.39.21zm6.25 12.07c-.13 0-.26-.05-.35-.15-.87-.87-1.34-1.43-2.01-2.64-.69-1.23-1.05-2.73-1.05-4.34 0-2.97 2.54-5.39 5.66-5.39s5.66 2.42 5.66 5.39c0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-2.42-2.09-4.39-4.66-4.39-2.57 0-4.66 1.97-4.66 4.39 0 1.44.32 2.77.93 3.85.64 1.15 1.08 1.64 1.85 2.42.19.2.19.51 0 .71-.11.1-.24.15-.37.15zm7.17-1.85c-1.19 0-2.24-.3-3.1-.89-1.49-1.01-2.38-2.65-2.38-4.39 0-.28.22-.5.5-.5s.5.22.5.5c0 1.41.72 2.74 1.94 3.56.71.48 1.54.71 2.54.71.24 0 .64-.03 1.04-.1.27-.05.53.13.58.41.05.27-.13.53-.41.58-.57.11-1.07.12-1.21.12zM14.91 22c-.04 0-.09-.01-.13-.02-1.59-.44-2.63-1.03-3.72-2.1-1.4-1.39-2.17-3.24-2.17-5.22 0-1.62 1.38-2.94 3.08-2.94 1.7 0 3.08 1.32 3.08 2.94 0 1.07.93 1.94 2.08 1.94s2.08-.87 2.08-1.94c0-3.77-3.25-6.83-7.25-6.83-2.84 0-5.44 1.58-6.61 4.03-.39.81-.59 1.76-.59 2.8 0 .78.07 2.01.67 3.61.1.26-.03.55-.29.64-.26.1-.55-.04-.64-.29-.49-1.31-.73-2.61-.73-3.96 0-1.2.23-2.29.68-3.24 1.33-2.79 4.28-4.6 7.51-4.6 4.55 0 8.25 3.51 8.25 7.83 0 1.62-1.38 2.94-3.08 2.94s-3.08-1.32-3.08-2.94c0-1.07-.93-1.94-2.08-1.94s-2.08.87-2.08 1.94c0 1.71.66 3.31 1.87 4.51.95.94 1.86 1.46 3.27 1.85.27.07.42.35.35.61-.05.23-.26.38-.47.38z"
+};
+function ic(n, s = 24, c = "currentColor", style = "") {
+  return `<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" style="${style}"><path fill="${c}" d="${I[n]}"/></svg>`;
+}
+
+/* ── Colori (Color.kt + default M3 1.2 non sovrascritti) ── */
+const C = {
+  primary:"#3949AB", pc:"#DEE0FF", onPc:"#00105C", sc:"#DFE0F9", onSc:"#171B2C",
+  bg:"#FBF8FF", sv:"#E3E1EC", onSv:"#46464F", outline:"#777680", outlineVar:"#CAC4D0",
+  error:"#BA1A1A", errC:"#F9DEDC", onSurface:"#1D1B20",
+  tBlack:"#1A1A1A", tYellow:"#E6C619", tRed:"#CC3333", tPink:"#FFB3BA", neutral:"#607D8B"
+};
+
+/* ── Mattoni comuni ── */
+function statusBar(bg = "#3949AB") {
+  const sig = `<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#fff" d="M2 22h20V2z"/></svg>`;
+  const wifi = `<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#fff" d="M12 21l11.6-14.5C23.1 6.1 18.6 2.5 12 2.5S.9 6.1.4 6.5L12 21z"/></svg>`;
+  const bat = `<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#fff" d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>`;
+  return `<div class="status" style="background:${bg}"><span>10:15</span><span class="sicons">${wifi}${sig}${bat}</span></div>`;
+}
+function phone(content, opts = {}) {
+  return `<div class="phone">${statusBar(opts.statusBg)}<div class="app" style="${opts.appStyle || ""}">${content}</div><div class="mockup-label">Mockup dell'interfaccia</div></div>`;
+}
+const mdr = () => `<div class="mdr">${ic("warning", 16, "#FF8800")}<span class="t-bs" style="color:#1D1B20">Strumento di documentazione clinica</span></div>`;
+function topBar(title, sub, actions = "", opts = {}) {
+  const col = opts.color || C.onSurface;
+  return `<div class="topbar" style="background:${opts.bg || C.bg};color:${col}">
+    <div class="iconbtn">${ic("back", 24, col)}</div>
+    <div class="title"><div class="t-tl" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${title}</div>${sub ? `<div class="t-lm onsv" style="white-space:nowrap">${sub}</div>` : ""}</div>
+    ${actions}</div>`;
+}
+function navBar(sel) {
+  const it = (n, l, s) => `<div class="navitem ${s ? "sel" : ""}"><div class="ind">${ic(n, 24, s ? C.onSc : C.onSv)}</div><div class="nl">${l}</div></div>`;
+  return `<div class="navbar">${it("people", "Pazienti", sel === 0)}${it("settings", "Impostazioni", sel === 1)}</div>`;
+}
+function otf(label, value, opts = {}) {
+  const trail = opts.trail ? `<div class="trail">${ic(opts.trail, 24, C.onSv)}</div>` : `<div style="width:16px"></div>`;
+  const vcol = opts.valueColor || C.onSurface;
+  return `<div class="otf" style="${opts.style ? opts.style + ";" : ""}${opts.bgc ? `--bgc:${opts.bgc};` : ""}${opts.border ? `border-color:${opts.border};` : ""}"><span class="lab" style="${opts.labColor ? `color:${opts.labColor}` : ""}">${label}</span><div class="val" style="color:${vcol};${opts.valStyle || ""}">${value}</div>${trail}</div>`;
+}
+function slider(v, color, opts = {}) {
+  // v in 0..1
+  const pct = (v * 100).toFixed(2);
+  let ticks = "";
+  if (opts.steps) {
+    const n = opts.steps + 1;
+    for (let i = 0; i <= n; i++) {
+      const p = i / n;
+      const on = p <= v;
+      ticks += `<i class="tick" style="left:${(p * 100).toFixed(2)}%;background:${on ? "rgba(255,255,255,.75)" : "rgba(70,70,79,.55)"}"></i>`;
+    }
+  }
+  return `<div class="slider"><div class="trk" style="${opts.inactive ? `background:${opts.inactive}` : ""}"></div><div class="act" style="width:${pct}%;background:${color}"></div>${ticks}<div class="thumb" style="left:${pct}%;background:${color}"></div></div>`;
+}
+function ph(label, w, h, opts = {}) {
+  const iconSize = opts.icon || Math.max(18, Math.min(40, Math.round(Math.min(w, h) * 0.26)));
+  return `<div class="ph" style="width:${w}px;height:${h}px;border-radius:${opts.r ?? 10}px;${opts.style || ""}">${ic("image", iconSize, "#7986CB")}<span style="${opts.labStyle || ""}">${label}</span></div>`;
+}
+const radio = sel => `<div class="radio ${sel ? "sel" : ""}"><i></i></div>`;
+const sp = h => `<div style="height:${h}px;flex:none"></div>`;
+
+/* gradienti del brand: Brush.linearGradient da (0,0) a (w,h), come in BrandUi.kt */
+function applyGradients() {
+  document.querySelectorAll("[data-grad]").forEach(el => {
+    const r = el.getBoundingClientRect();
+    const ang = 90 + Math.atan2(r.height, r.width) * 180 / Math.PI;
+    const [a, b] = el.dataset.grad === "deep" ? ["#283593", "#5C6BC0"] : ["#3949AB", "#5C6BC0"];
+    el.style.backgroundImage = `linear-gradient(${ang}deg, ${a}, ${b})`;
+  });
+  document.querySelectorAll("[data-bubbles]").forEach(el => {
+    const r = el.getBoundingClientRect();
+    const m = Math.min(r.width, r.height);
+    const mk = (cx, cy, rad, a) => {
+      const d = document.createElement("div");
+      d.className = "bubble";
+      Object.assign(d.style, { left: (cx - rad) + "px", top: (cy - rad) + "px", width: 2 * rad + "px", height: 2 * rad + "px", opacity: a });
+      el.insertBefore(d, el.firstChild);
+    };
+    mk(r.width * 0.92, r.height * 0.05, m * 0.42, 0.10);
+    mk(r.width * 0.04, r.height * 0.55, m * 0.24, 0.07);
+  });
+}
+
+/* ── Dati inventati ── */
+const PATIENTS = [
+  { s: "Paziente", n: "A", ward: "Medicina", bed: "4" },
+  { s: "Paziente", n: "B", ward: "Geriatria", bed: "11" },
+  { s: "Paziente", n: "C", ward: "Chirurgia", bed: "7" }
+];
+// Medicazioni della lesione "Sacro 1" (Paziente A), dalla più vecchia
+const DRESS = [
+  { d: "06/10/2026", t: "10:05", n: 10, s: 40, g: 50, e: 0, L: "4,0", W: "3,0", D: "5 mm", ex: "Moderato · Sieroso", pain: 5, ph: 1 },
+  { d: "13/10/2026", t: "09:50", n: 0, s: 35, g: 60, e: 5, L: "3,8", W: "2,9", D: "5 mm", ex: "Moderato · Sieroso", pain: 4, ph: 1 },
+  { d: "20/10/2026", t: "10:10", n: 0, s: 30, g: 60, e: 10, L: "3,6", W: "2,6", D: "4 mm", ex: "Moderato · Sieroso", pain: 4, ph: 2 },
+  { d: "27/10/2026", t: "09:40", n: 0, s: 25, g: 65, e: 10, L: "3,4", W: "2,4", D: "4 mm", ex: "Scarso · Sieroso", pain: 3, ph: 1 },
+  { d: "03/11/2026", t: "10:15", n: 0, s: 20, g: 65, e: 15, L: "3,2", W: "2,1", D: "4 mm", ex: "Scarso · Sieroso", pain: 3, ph: 3 }
+];
+const NORTON = [["06/10", 11], ["13/10", 12], ["20/10", 12], ["27/10", 13], ["03/11", 13]];
+const NRS2002 = [["06/10", 3], ["20/10", 3], ["03/11", 2]];
+const PAIN = [["06/10", 5], ["13/10", 4], ["20/10", 4], ["27/10", 3], ["03/11", 3]];
+
+/* ── Testata della scheda paziente (gradiente profondo + note + pillole) ── */
+function patientHeader(tab) {
+  const tabs = ["Scale", "Lesioni", "Storico"].map((l, i) =>
+    `<div class="tab ${i === tab ? "sel" : ""}" ${i === tab ? 'data-grad="brand"' : ""}>${l}</div>`).join("");
+  return `<div data-grad="deep" style="flex:none">
+      ${topBar("Paziente A", "", `<div class="iconbtn">${ic("person", 24, "#fff")}</div><div class="iconbtn">${ic("share", 24, "#fff")}</div><div class="iconbtn">${ic("more", 24, "#fff")}</div>`, { bg: "transparent", color: "#fff" })}
+    </div>
+    <div class="card" style="flex:none;margin:6px 16px;background:#EFECF5;padding:8px 12px">
+      <div class="row"><div class="t-ll f1">Note / Presa in carico</div><div class="iconbtn" style="margin-right:-12px">${ic("edit", 16, C.primary)}</div></div>
+      <div class="t-bs" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Presa in carico il 06/10/2026. Documentazione settimanale delle lesioni con foto e misure.</div>
+    </div>
+    <div class="tabs" style="flex:none">${tabs}</div>`;
+}
+
+/* ── Mappa corporea: silhouette SVG disegnata da zero (forme semplici), 2 figure ── */
+// viewBox 900×1062, assi delle figure come AXIS_FRONT/AXIS_BACK di WoundBodyMap.kt
+function figureShapes(ax) {
+  const sh = [];
+  sh.push({ t: "ellipse", cx: ax, cy: 72, rx: 42, ry: 54 });
+  sh.push({ t: "rect", x: ax - 19, y: 112, w: 38, h: 66, r: 10 });
+  sh.push({ t: "path", d: `M${ax - 30},170 C${ax - 70},172 ${ax - 105},178 ${ax - 114},200 C${ax - 122},222 ${ax - 104},262 ${ax - 100},300 C${ax - 96},340 ${ax - 84},370 ${ax - 84},410 C${ax - 84},450 ${ax - 100},480 ${ax - 98},520 C${ax - 96},545 ${ax - 40},552 ${ax},552 C${ax + 40},552 ${ax + 96},545 ${ax + 98},520 C${ax + 100},480 ${ax + 84},450 ${ax + 84},410 C${ax + 84},370 ${ax + 96},340 ${ax + 100},300 C${ax + 104},262 ${ax + 122},222 ${ax + 114},200 C${ax + 105},178 ${ax + 70},172 ${ax + 30},170 Z` });
+  for (const s of [-1, 1]) {
+    sh.push({ t: "line", pts: [[ax + s * 112, 222], [ax + s * 127, 395], [ax + s * 140, 515]], w: 42 });
+    sh.push({ t: "ellipse", cx: ax + s * 146, cy: 556, rx: 19, ry: 34 });
+    sh.push({ t: "line", pts: [[ax + s * 50, 505], [ax + s * 40, 700]], w: 82 });
+    sh.push({ t: "line", pts: [[ax + s * 40, 700], [ax + s * 43, 800], [ax + s * 37, 930]], w: 52 });
+    sh.push({ t: "ellipse", cx: ax + s * 48, cy: 992, rx: 25, ry: 46 });
+  }
+  return sh;
+}
+function shapesToSvg(shapes, fill, stroke, extra) {
+  return shapes.map(s => {
+    if (s.t === "ellipse") return `<ellipse cx="${s.cx}" cy="${s.cy}" rx="${s.rx}" ry="${s.ry}" fill="${fill}" stroke="${stroke}" stroke-width="${extra}"/>`;
+    if (s.t === "rect") return `<rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}" rx="${s.r}" fill="${fill}" stroke="${stroke}" stroke-width="${extra}"/>`;
+    if (s.t === "path") return `<path d="${s.d}" fill="${fill}" stroke="${stroke}" stroke-width="${extra}"/>`;
+    return `<polyline points="${s.pts.map(p => p.join(",")).join(" ")}" fill="none" stroke="${extra ? stroke : fill}" stroke-width="${s.w + extra}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }).join("");
+}
+function bodySvg(w, h) {
+  const shapes = [...figureShapes(222.3), ...figureShapes(672.3)];
+  const outline = "#A9AEC9", fill = "#EEF0F8";
+  return `<svg width="${w}" height="${h}" viewBox="0 0 900 1062" style="position:absolute;left:0;top:0">
+    <g>${shapesToSvg(shapes, outline, outline, 6)}</g>
+    <g>${shapesToSvg(shapes, fill, "none", 0)}</g>
+  </svg>`;
+}
+// Posizioni dei marker (frazioni), copiate da bodyMapPositions in WoundBodyMap.kt
+const AF = 0.247, AB = 0.747;
+const ZONES = [
+  ["FRONTE", AF, .048], ["VISO", AF, .088], ["COLLO_ANT", AF, .132], ["SPALLA_DX_ANT", .149, .190], ["SPALLA_SX_ANT", .345, .190],
+  ["TORACE", AF, .210], ["BRACCIO_DX_ANT", .122, .345], ["BRACCIO_SX_ANT", .372, .345], ["ADDOME", AF, .345], ["PERINEO", AF, .512],
+  ["COSCIA_DX_ANT", .205, .545], ["COSCIA_SX_ANT", .289, .545], ["GINOCCHIO_DX_ANT", .214, .665], ["GINOCCHIO_SX_ANT", .280, .665],
+  ["GAMBA_DX_ANT", .199, .775], ["GAMBA_SX_ANT", .295, .775], ["CAVIGLIA_DX_ANT", .207, .880], ["CAVIGLIA_SX_ANT", .287, .880],
+  ["PIEDE_DX", .195, .950], ["PIEDE_SX", .299, .950],
+  ["OCCIPITE", AB, .050], ["COLLO_POST", AB, .132], ["SPALLA_SX_POST", .667, .185], ["SPALLA_DX_POST", .827, .185], ["DORSO", AB, .270],
+  ["BRACCIO_SX_POST", .624, .345], ["BRACCIO_DX_POST", .870, .345], ["SACRO", AB, .430], ["GLUTEO_SX", .707, .525], ["GLUTEO_DX", .787, .525],
+  ["COSCIA_SX_POST", .713, .595], ["COSCIA_DX_POST", .781, .595], ["GINOCCHIO_SX_POST", .714, .660], ["GINOCCHIO_DX_POST", .780, .660],
+  ["GAMBA_SX_POST", .699, .770], ["GAMBA_DX_POST", .795, .770], ["TALLONE_SX", .707, .935], ["TALLONE_DX", .787, .935]
+];
+const WOUND_ZONES = new Set(["SACRO", "TALLONE_DX", "TORACE"]);
+function bodyMap() {
+  const W = 396, H = Math.round(396 * 1062 / 900 * 100) / 100;
+  let markers = "";
+  for (const [z, fx, fy] of ZONES) {
+    const x = W * fx, y = H * fy;
+    if (WOUND_ZONES.has(z)) {
+      markers += `<div style="position:absolute;left:${x - 15}px;top:${y - 15}px;width:30px;height:30px;border-radius:50%;background:${C.error};border:2px solid ${C.errC};display:flex;align-items:center;justify-content:center">${ic("healing", 17, "#fff")}</div>`;
+    } else {
+      markers += `<div style="position:absolute;left:${x - 11}px;top:${y - 11}px;width:22px;height:22px;border-radius:50%;background:rgba(57,73,171,.22);border:1.5px solid rgba(57,73,171,.75)"></div>`;
+    }
+  }
+  const legend = `<div class="row" style="justify-content:space-evenly;padding:4px 16px">
+      <div class="row" style="gap:4px"><div style="width:16px;height:16px;border-radius:50%;background:rgba(57,73,171,.20);border:1.4px solid rgba(57,73,171,.7)"></div><span class="t-lsm">Nessuna lesione</span></div>
+      <div class="row" style="gap:4px"><div style="width:16px;height:16px;border-radius:50%;background:${C.error};border:1.5px solid ${C.errC}"></div><span class="t-lsm">Lesione presente</span></div>
+    </div>`;
+  return `<div class="t-bm onsv" style="padding:8px 16px;flex:none">Tocca una zona per gestire le lesioni</div>
+    <div style="padding:0 8px;flex:none">
+      <div class="row t-tm" style="justify-content:space-evenly;padding-top:8px"><span>FRONTE</span><span>RETRO</span></div>
+      <div style="position:relative;width:${W}px;height:${H}px">${bodySvg(W, H)}${markers}</div>
+      ${sp(12)}${legend}
+    </div>`;
+}
+
+/* ═════════════════════════ SCHERMATE ═════════════════════════ */
+const SCREENS = {};
+
+/* 01 · Accesso */
+SCREENS.s01 = () => phone(`
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;background:radial-gradient(circle 533px at 50% 50%, #E7E9FB, #FBF8FF)">
+    <div data-grad="brand" style="width:88px;height:88px;border-radius:26px;display:flex;align-items:center;justify-content:center">${ic("fingerprint", 48, "#fff")}</div>
+    ${sp(22)}
+    <div style="font-size:24px;line-height:32px;font-weight:800">WoundApp</div>
+    ${sp(8)}
+    <div class="t-bm onsv center">Documentazione clinica lesioni</div>
+    ${sp(32)}
+    <div data-grad="brand" style="width:100%;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff">${ic("fingerprint", 24, "#fff")}<span style="font-size:16px;line-height:24px;font-weight:700">Autenticati</span></div>
+    ${sp(16)}
+    <div class="t-lsm onsv center">Solo documentazione · non è un dispositivo medico</div>
+  </div>`);
+
+/* 02 · Elenco pazienti */
+SCREENS.s02 = () => {
+  const items = PATIENTS.map(p => `
+    <div style="margin:5px 16px;border-radius:16px;background:#EEECF9;box-shadow:0 1px 2px rgba(0,0,0,.25),0 1px 4px 1px rgba(0,0,0,.10);padding:12px;display:flex;align-items:center">
+      <div class="avatar" data-grad="brand">${(p.s[0] + p.n[0]).toUpperCase()}</div>
+      <div style="width:14px"></div>
+      <div class="f1"><div class="t-tm" style="font-weight:700">${p.s} ${p.n}</div><div class="t-bs onsv">Reparto: ${p.ward} · Letto: ${p.bed}</div></div>
+    </div>`).join("");
+  return phone(`${mdr()}
+    <div class="brandheader" data-grad="brand" data-bubbles="1" style="flex:none">
+      <div style="color:#fff;font-size:22px;line-height:24px;font-weight:800">Pazienti</div>
+      ${sp(2)}
+      <div class="t-bs" style="color:rgba(255,255,255,.85)">3 assistiti</div>
+      ${sp(14)}
+      <div style="height:56px;background:#fff;border-radius:14px;display:flex;align-items:center;padding-left:12px">${ic("search", 24, C.onSv)}<span class="t-bl onsv" style="margin-left:16px">Cerca paziente...</span></div>
+    </div>
+    <div style="padding-top:12px">${items}</div>
+    <div style="position:absolute;right:16px;bottom:96px;width:56px;height:56px;border-radius:18px;background:#3949AB;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3),0 4px 8px 3px rgba(0,0,0,.15)">${ic("add", 24, "#fff")}</div>
+    ${navBar(0)}`);
+};
+
+/* 03 · Scheda paziente, tab Lesioni (mappa corporea) */
+SCREENS.s03 = () => phone(`${mdr()}${patientHeader(1)}${bodyMap()}`);
+
+/* step indicator (GatedStepIndicator.kt) */
+function steps(cur, states) {
+  // states: per step {done, locked}
+  const labels = ["Foto", "Tessuto", "Note"];
+  let h = "";
+  labels.forEach((l, i) => {
+    const st = states[i];
+    if (i > 0) h += `<div style="width:16px;height:1px;background:${states[i - 1].done ? C.primary : C.outlineVar}"></div>`;
+    let bg = C.sv, inner = `<span class="t-lm" style="color:${C.onSv}">${i + 1}</span>`;
+    if (st.done) { bg = C.primary; inner = ic("done", 16, "#fff"); }
+    else if (i === cur) { bg = C.pc; inner = `<span class="t-lm" style="color:${C.onPc}">${i + 1}</span>`; }
+    else if (st.locked) { inner = ic("morehoriz", 14, C.onSv); }
+    h += `<div class="col" style="align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:${bg};display:flex;align-items:center;justify-content:center">${inner}</div><div class="t-lsm" style="padding-top:4px">${l}</div></div>`;
+  });
+  return `<div class="row" style="flex:none;justify-content:space-evenly;padding:12px 8px">${h}</div>`;
+}
+const dressingTop = () => topBar("Medicazione", "Paziente A — Sacro");
+
+/* 04 · Medicazione, tappa Foto */
+SCREENS.s04 = () => {
+  const side = 108, slot = (380 - 16) / 3;
+  let strip = "";
+  ["Foto 1", "Foto 2", "Foto 3"].forEach((l, i) => {
+    const x = i * (slot + 8) + (slot - side) / 2;
+    strip += `<div style="position:absolute;left:${x}px;top:0;width:${side}px;height:${side}px">
+        ${ph(l, side, side, { r: 10 })}
+        ${i === 0 ? `<div class="t-lsm" style="position:absolute;left:4px;bottom:4px;background:${C.primary};color:#fff;border-radius:6px;padding:2px 6px">Principale</div>` : ""}
+        <div style="position:absolute;right:9px;top:9px;width:22px;height:22px;border-radius:50%;background:rgba(251,248,255,.85);display:flex;align-items:center;justify-content:center">${ic("close", 16, C.onSurface)}</div>
+      </div>`;
+  });
+  return phone(`${mdr()}${dressingTop()}${steps(0, [{ done: true }, {}, { locked: true }])}
+    <div style="padding:16px">
+      <div class="t-tl">Foto della lesione</div>${sp(4)}
+      <div class="t-bs onsv">Carica una o più foto (fino a 4). La prima è la copertina.</div>${sp(14)}
+      <div style="position:relative;height:${side}px">${strip}</div>
+      <div class="t-bs onsv" style="padding-top:10px">Tieni premuto e trascina una foto per riordinarla. La prima è la copertina.</div>
+      ${sp(10)}
+      <div class="btn outlined" style="display:inline-flex">${ic("photolib", 18, C.primary)}<span>Aggiungi foto</span></div>
+      ${sp(18)}
+      <div class="btn">Avanti</div>
+    </div>`);
+};
+
+/* 05 · Medicazione, tappa Tessuto (4 cursori manuali) */
+SCREENS.s05 = () => {
+  const vals = [["Necrotico (nero/marrone)", 0, C.tBlack], ["Slough / Fibrina (giallo)", 20, C.tYellow], ["Granulazione (rosso)", 65, C.tRed], ["Epitelizzazione (rosa)", 15, C.tPink]];
+  const legend = [["Necrosi", 0, C.tBlack], ["Slough", 20, C.tYellow], ["Granulazione", 65, C.tRed], ["Epitelizzazione", 15, C.tPink]];
+  const bar = legend.filter(x => x[1] > 0).map(x => `<div style="width:${x[1]}%;height:100%;background:${x[2]};border-radius:1.5px"></div>`).join("");
+  const sliders = vals.map(([l, v, c]) => `
+    <div style="padding:4px 0">
+      <div class="row" style="justify-content:space-between"><span class="t-bs">${l}</span><span class="row" style="gap:4px"><i style="width:10px;height:10px;border-radius:50%;background:${c};display:block"></i><span class="t-lm">${v}%</span></span></div>
+      ${slider(v / 100, c)}
+    </div>`).join("");
+  return phone(`${mdr()}${dressingTop()}${steps(1, [{ done: true }, { done: true }, {}])}
+    <div class="scrollwrap"><div style="padding:16px;transform:translateY(-196px)">
+      <div class="t-tl">Composizione Tissutale</div>${sp(4)}
+      <div class="t-bs onsv">Osserva la lesione e stima le percentuali di tessuto.</div>${sp(8)}
+      <div class="card" style="border-radius:16px;height:220px;padding:8px;display:flex;justify-content:center">${ph("Foto 1", 272, 204, { r: 2, icon: 40 })}</div>
+      ${sp(8)}
+      <div style="padding:8px">
+        <div class="t-tm">Composizione Tessuto</div>${sp(8)}
+        <div style="display:flex;height:32px">${bar}</div>${sp(8)}
+        ${legend.map(([l, v, c]) => `<div class="row" style="padding:2px 0;gap:8px"><i style="width:12px;height:12px;border-radius:50%;background:${c};display:block"></i><span class="t-bm">${l}: ${v},0%</span></div>`).join("")}
+      </div>
+      ${sp(12)}${sliders}${sp(8)}
+      <div class="t-lm onsv">Totale: 100%</div>
+      <div class="t-lm onsv">Rimanente: 0%</div>
+      ${sp(16)}
+      <div class="row" style="gap:8px"><div class="btn outlined f1">Indietro</div><div class="btn f1">Avanti</div></div>
+    </div></div>`);
+};
+
+/* 06 · Medicazione, tappa Note (misure, essudato, dolore, medicazioni) */
+SCREENS.s06 = () => phone(`${mdr()}${dressingTop()}${steps(2, [{ done: true }, { done: true }, {}])}
+    <div class="scrollwrap"><div class="col" style="padding:16px;gap:12px;transform:translateY(-112px)">
+      <div class="t-tl">Medicazione e Note</div>
+      ${otf("Data medicazione", "03/11/2026", { trail: "calendar" })}
+      <div class="t-ts">Misure (facoltative)</div>
+      <div class="row" style="gap:8px">${otf("Lungh. (cm)", "3,2", { style: "flex:1" })}${otf("Largh. (cm)", "2,1", { style: "flex:1" })}</div>
+      <div class="row" style="gap:8px">${otf("Prof.", "4", { style: "flex:1" })}<span class="chip sel">mm</span><span class="chip">cm</span></div>
+      ${otf("Livello essudato", "Scarso", { trail: "dropdown" })}
+      ${otf("Tipo essudato", "Sieroso", { trail: "dropdown" })}
+      <div class="row" style="gap:8px"><div class="switch"></div><span class="t-ll">Dolore durante la procedura (NRS)</span></div>
+      <div class="t-ll">Dolore NRS: 3/10</div>
+      <div style="margin:-12px 0 0">${slider(0.3, C.primary, { steps: 9 })}</div>
+      <div class="t-ts">Medicazione Primaria</div>
+      ${otf("A contatto con la lesione", "Idrofibra", { trail: "dropdown" })}
+      <div class="t-ts">Medicazione Secondaria</div>
+      ${otf("Copertura", "Schiuma", { trail: "dropdown" })}
+      ${otf("Note cliniche", "Cute perilesionale integra.")}
+      ${sp(4)}
+      <div class="row" style="gap:8px"><div class="btn outlined f1">Indietro</div><div class="btn f1">Salva Medicazione</div></div>
+    </div></div>`);
+
+/* scheda medicazione dello Storico (PhotoHistoryCard, chiusa) */
+function historyCard(dr, n) {
+  const segs = [[dr.n, C.tBlack], [dr.s, C.tYellow], [dr.g, C.tRed], [dr.e, C.tPink]].filter(x => x[0] > 0)
+    .map(x => `<div style="width:${x[0]}%;height:100%;background:${x[1]}"></div>`).join("");
+  return `<div class="card" style="padding:12px;flex:none">
+    <div class="row" style="align-items:flex-start;gap:12px">
+      <div style="position:relative;width:140px;height:140px;flex:none">
+        ${ph("Foto 1", 140, 140, { r: 8 })}
+        ${dr.ph > 1 ? `<div class="row" style="position:absolute;right:4px;top:4px;background:rgba(0,0,0,.65);border-radius:6px;padding:2px 5px;gap:3px">${ic("photolib", 12, "#fff")}<span class="t-lsm" style="color:#fff">${dr.ph}</span></div>` : ""}
+        <div style="position:absolute;right:0;bottom:0;width:24px;height:24px;background:rgba(0,0,0,.5);border-radius:4px;padding:2px">${ic("zoomin", 20, "#fff")}</div>
+      </div>
+      <div class="f1"><div class="t-ts">Sacro</div><div class="t-bs onsv">Ulcera da pressione</div>${sp(4)}<div class="t-lm onsv">${dr.d} ${dr.t}</div></div>
+      ${ic("expmore", 24, C.onSurface)}
+    </div>
+    ${sp(8)}<div style="display:flex;height:8px;border-radius:4px;overflow:hidden">${segs}</div>
+  </div>`;
+}
+
+/* 07 · Storico (cronologia per lesione, con «Confronta») */
+SCREENS.s07 = () => {
+  const cards = [4, 3, 2, 1].map(i => historyCard(DRESS[i])).join("");
+  return phone(`${mdr()}${patientHeader(2)}
+    <div class="scrollwrap"><div class="col" style="padding:16px;gap:12px">
+      <div class="row" style="padding:8px 0 4px"><div class="divider f1"></div><span class="t-ts prim">&nbsp;&nbsp;Sacro&nbsp;&nbsp;</span><div class="divider f1"></div></div>
+      <div class="card" style="background:${C.sc};padding:8px 4px 8px 12px;flex:none">
+        <div class="row">${ic("healing", 18, C.primary)}<div style="width:8px"></div>
+          <div class="f1"><div class="t-ts">Sacro 1</div><div class="t-bs onsv">Ulcera da pressione</div><div class="t-lsm onsv">5 medicazioni</div></div>
+          <div class="tbtn">${ic("compare", 18, C.primary)}<span>Confronta</span></div>
+        </div>
+      </div>
+      ${cards}
+    </div></div>`);
+};
+
+/* 08 · Confronto foto, modalità Sovrapposte con opacità */
+SCREENS.s08 = () => {
+  const seg = (t, sel, first) => `<div style="height:40px;display:flex;align-items:center;gap:8px;padding:0 12px;border:1px solid ${C.outline};${first ? "border-radius:20px 0 0 20px" : "border-radius:0 20px 20px 0;margin-left:-1px"};background:${sel ? C.sc : C.bg};color:${sel ? C.onSc : C.onSurface};font-size:14px;font-weight:500;white-space:nowrap">${sel ? ic("done", 18, C.onSc) : ""}${t}</div>`;
+  const pw = 412, phh = 309;
+  return phone(`
+    <div style="flex:1;display:flex;flex-direction:column;background:#000">
+      <div class="row" style="padding:6px 8px;background:#000">
+        <div class="t-ts f1" style="color:#fff">Confronto foto</div>
+        <div class="row">${seg("Affiancate", false, true)}${seg("Sovrapposte", true, false)}</div>
+        <div class="iconbtn">${ic("close", 24, "#fff")}</div>
+      </div>
+      <div style="flex:1;position:relative;overflow:hidden">
+        <div style="position:absolute;left:0;top:50%;margin-top:-${phh / 2}px;width:${pw}px;height:${phh}px;background:linear-gradient(135deg,#E8EAF6,#D6DAF0);display:flex;align-items:center;justify-content:center">${ic("image", 56, "#9FA8DA")}
+          <span style="position:absolute;left:12px;bottom:10px;font-size:13px;font-weight:600;color:#5C6BC0">Foto 1 · 06/10/2026</span></div>
+        <div style="position:absolute;left:0;top:50%;margin-top:-${phh / 2}px;width:${pw}px;height:${phh}px;opacity:.5;transform:translate(22px,-18px) scale(.9);background:linear-gradient(135deg,#7986CB,#3F51B5);display:flex;align-items:center;justify-content:center">${ic("image", 56, "#E8EAF6")}
+          <span style="position:absolute;right:12px;top:10px;font-size:13px;font-weight:600;color:#fff">Foto 2 · 03/11/2026</span></div>
+        <div class="row" style="position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.5);border-radius:6px;padding:3px 8px;white-space:nowrap">
+          <span class="t-lm" style="color:#fff">06/10/2026 10:05&nbsp;&nbsp;·&nbsp;&nbsp;03/11/2026 10:15</span><span style="width:8px"></span><span class="t-lm" style="color:${C.pc}">Reimposta</span>
+        </div>
+      </div>
+      <div class="col" style="padding:10px;gap:6px;background:#000">
+        <div class="t-lsm" style="color:#fff">Opacità 2ª foto · trascina/pizzica per allinearla</div>
+        ${slider(0.5, C.primary)}
+        <div class="row" style="gap:8px">
+          ${otf("Foto 1", "1 · 06/10/2026 10:05", { style: "flex:1;padding-left:12px", bgc: "#000", trail: "dropdown", valStyle: "font-size:12px;line-height:16px" })}
+          ${otf("Foto 2", "8 · 03/11/2026 10:15", { style: "flex:1;padding-left:12px", bgc: "#000", trail: "dropdown", valStyle: "font-size:12px;line-height:16px" })}
+        </div>
+      </div>
+    </div>`);
+};
+
+/* 09 · Scala di Norton */
+SCREENS.s09 = () => {
+  const items = [
+    ["Condizione Fisica", ["Pessima: allettato, cachessia", "Scadente: magro, debole", "Discreta: adeguato stato nutrizionale", "Buona: ben nutrito"], 3],
+    ["Stato Mentale", ["Stuporoso/comatoso", "Confuso/disorientato", "Apatico/passivo", "Vigile/orientato"], 4],
+    ["Attività", ["Allettato", "In poltrona", "Cammina con aiuto", "Deambula autonomamente"], 2],
+    ["Mobilità", ["Immobile", "Molto limitata", "Leggermente limitata", "Completa"], 2],
+    ["Incontinenza", ["Doppia incontinenza", "Abitualmente urinaria", "Occasionale", "Assente/catetere"], 2]
+  ];
+  const html = items.map(([t, opts, sel]) => `<div style="padding:8px 0"><div class="t-ts">${t}</div>
+      ${opts.map((o, i) => `<div class="row" style="height:48px">${radio(sel === i + 1)}<div class="f1"><div class="t-bm">${o}</div><div class="t-lsm onsv">${i + 1}</div></div></div>`).join("")}
+    </div>`).join("");
+  return phone(`${mdr()}${topBar("Scala di Norton", "Paziente A", `<div class="iconbtn">${ic("infoO", 24, C.onSv)}</div>`)}
+    <div class="scrollwrap"><div style="padding:16px">
+      <div class="card" style="background:${C.sv};padding:16px"><div class="t-hs">Punteggio: 13/20</div></div>
+      ${sp(16)}${html}
+    </div></div>`);
+};
+
+/* grafico neutro dei punteggi (ScaleTrendGraph): misure in px Android convertite a 2,625 px/dp */
+function trendGraph(scores, min, max, w) {
+  const h = 100, dens = 2.625;
+  const pad = 8 / dens, bottom = (11 * dens * 1.4 + 8) / dens, chartH = h - bottom, range = max - min;
+  let g = "";
+  for (let i = 0; i <= 4; i++) {
+    const y = pad + (chartH - 2 * pad) * i / 4;
+    g += `<line x1="${pad}" y1="${y}" x2="${w - pad}" y2="${y}" stroke="rgba(119,118,128,.3)" stroke-width="${1 / dens}"/>`;
+  }
+  const pts = scores.map(([d, s], i) => [pad + (w - 2 * pad) * i / (scores.length - 1), pad + (chartH - 2 * pad) * (1 - (s - min) / range), d]);
+  for (let i = 0; i < pts.length - 1; i++) g += `<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${pts[i + 1][0]}" y2="${pts[i + 1][1]}" stroke="${C.primary}" stroke-width="${2 / dens}"/>`;
+  pts.forEach(p => { g += `<circle cx="${p[0]}" cy="${p[1]}" r="${6 / dens}" fill="${C.neutral}"/>`; });
+  pts.forEach(p => { g += `<text x="${p[0]}" y="${h - 4 / dens}" font-size="11" fill="${C.outline}" text-anchor="middle" font-family="Roboto,Inter,sans-serif">${p[2]}</text>`; });
+  return `<svg width="${w}" height="${h}" style="display:block;overflow:visible">${g}</svg>`;
+}
+function trendCard(title, sub, scores, min, max, legend) {
+  return `<div class="card" style="padding:16px;flex:none">
+    <div class="row" style="justify-content:space-between">
+      <div><div class="t-tm">${title}</div><div class="t-bs onsv">${sub}</div></div>
+      <div class="row" style="gap:4px"><i style="display:block;width:12px;height:12px;border-radius:2px;background:${C.neutral}"></i><span class="t-tl" style="font-weight:600">${scores[scores.length - 1][1]}</span></div>
+    </div>
+    ${sp(12)}${trendGraph(scores, min, max, 348)}${sp(6)}
+    <div class="t-lsm onsv">${legend}</div>
+  </div>`;
+}
+
+/* 10 · Tab Scale con l'andamento dei punteggi */
+SCREENS.s10 = () => phone(`${mdr()}${patientHeader(0)}
+    <div class="scrollwrap"><div class="col" style="padding:16px;gap:12px;transform:translateY(-80px)">
+      <div><div class="t-tl">Scale di valutazione</div>${sp(4)}<div class="t-bm onsv">Scale di valutazione compilate dall'operatore</div></div>
+      <div class="card" style="background:#F2F1FF;padding:16px;flex:none"><div class="row" style="justify-content:space-between"><div class="row">${ic("showchart", 24, C.primary)}<span class="t-tm" style="margin-left:8px">Andamento Scale</span></div>${ic("expless", 24, C.onSurface)}</div></div>
+      ${trendCard("Scala di Norton", "Scala di Norton (intervallo 5–20)", NORTON, 5, 20, "Secondo Norton et al. 1962: punteggio più basso = condizione più compromessa (intervallo 5–20)")}
+      ${trendCard("NRS-2002", "NRS-2002 — componente final screening (0–7)", NRS2002, 0, 7, "Kondrup et al. 2003: intervallo 0–7")}
+      ${trendCard("Scala NRS Dolore", "Intensità dolore riferito (0–10)", PAIN, 0, 10, "NRS: 0 = nessun dolore, 10 = peggior dolore possibile")}
+    </div></div>`);
+
+/* 11 · Menu di esportazione della scheda paziente */
+SCREENS.s11 = () => phone(`${mdr()}${patientHeader(1)}${bodyMap()}
+    <div class="menu" style="right:52px;top:84px;width:262px">
+      <div class="mi">${ic("pdf", 24, C.onSv)}<span>Esporta PDF</span></div>
+      <div class="mi">${ic("send", 24, C.onSv)}<span>Invia paziente a un collega</span></div>
+    </div>`);
+
+/* 12 · Report PDF (pagina 1 e inizio pagina 2), resa del layout di PatientReportPdf.kt */
+function pdfPage1() {
+  const A = "#1A237E", SOFT = "#E8EAF6", GRAY = "#6B7280", DARK = "#243042", BORDER = "#D3D7E0";
+  const cols = [50, 28, 40, 28, 26, 78, 30, 68, 163];
+  const heads = ["Data", "Necr%", "Slough%", "Gran%", "Epit%", "Essudato", "Dolore", "Misure", "Medicazione"];
+  const rows = DRESS.map(d => [d.d.slice(0, 9) + "<br>" + d.d.slice(9), d.n, d.s, d.g, d.e, d.ex, d.pain + "/10", `${d.L}×${d.W} ·${d.D.replace(" ", "")}`, "Idrofibra + Schiuma"]);
+  const cell = (t, w, st = "") => `<div style="width:${w}px;padding:2.5px 3px;${st}">${t}</div>`;
+  const chrono = `<div style="display:flex;background:${A};color:#fff;font-size:8px;font-weight:700;height:14px;align-items:center">${heads.map((h, i) => cell(h, cols[i])).join("")}</div>` +
+    rows.map((r, k) => `<div style="display:flex;font-size:9px;line-height:10.5px;background:${k % 2 === 0 ? SOFT : "#fff"}">${r.map((c, i) => cell(c, cols[i])).join("")}</div>`).join("") +
+    `<div style="height:.9px;background:${BORDER}"></div>`;
+  const sec = t => `<div style="margin-top:8px;display:flex;align-items:center;gap:8px"><div style="width:4px;height:14px;background:${A}"></div><div style="font-size:13px;font-weight:700;color:${A}">${t}</div></div><div style="height:.9px;background:${BORDER};margin:4px 0 8px"></div>`;
+  const scaleRow = (name, vals, odd) => `<div style="display:flex;background:${odd ? SOFT : "#fff"};padding:4px 0">
+      <div style="width:200px;padding-left:8px;font-size:10px;line-height:12px">${name}</div>
+      <div style="width:303px;padding-left:6px;font-size:8.5px;line-height:10.5px;color:${GRAY}">${vals}</div></div>`;
+  const fmt = (arr, max) => arr.map(([d, s]) => `<span style="white-space:nowrap">${d}/2026 = ${s}/${max}</span>`).join("&nbsp;&nbsp;&nbsp; ");
+  return `<div class="pdfpage">
+    <div class="ab" style="left:0;top:0;width:595px;height:84px;background:${A}"></div>
+    <div class="ab" style="left:42px;top:23px;font-size:15px;font-weight:700;color:#fff">REPORT DI DOCUMENTAZIONE — LESIONI</div>
+    <div class="ab" style="left:42px;top:48px;font-size:9px;color:#C5CAE9">Solo documentazione clinica · non è un dispositivo medico</div>
+    <div class="ab" style="left:42px;top:100px;width:511px;color:${DARK}">
+      <div style="font-size:8.5px;line-height:10.5px;color:${GRAY}">Documento di sola documentazione clinica generato dall'applicazione. NON è un dispositivo medico: non fornisce diagnosi, raccomandazioni terapeutiche o supporto decisionale. Contiene dati personali sensibili: trattare secondo la normativa applicabile sulla protezione dei dati.</div>
+      <div style="height:8px"></div>
+      <div style="background:#F5F6FA;border:.9px solid ${BORDER};border-radius:8px;padding:10px 12px 12px">
+        <div style="font-size:9.5px;font-weight:700;color:${A};letter-spacing:.5px;margin-bottom:5px">PAZIENTE</div>
+        ${[["Cognome e nome", "Paziente A"], ["Reparto / Letto", "Medicina - 4"], ["Documento generato il", "03/11/2026 10:30"]].map(([k, v]) => `<div style="display:flex;height:16px;align-items:center"><div style="width:150px;font-size:9.5px;font-weight:700;color:${GRAY}">${k}</div><div style="font-size:10px">${v}</div></div>`).join("")}
+      </div>
+      ${sec("Scale cliniche (punteggi)")}
+      <div style="display:flex;background:${A};color:#fff;font-size:9px;font-weight:700;height:16px;align-items:center"><div style="width:200px;padding-left:8px">Scala</div><div style="padding-left:6px">Rilevazioni (data = punteggio)</div></div>
+      ${scaleRow("Norton - rischio lesioni da pressione", fmt(NORTON, 20), true)}
+      ${scaleRow("NRS-2002 - screening finale", fmt(NRS2002, 7), false)}
+      ${scaleRow("Dolore (NRS)", fmt(PAIN, 10), true)}
+      <div style="height:.9px;background:${BORDER}"></div>
+      ${sec("Decorso delle lesioni")}
+      <div style="font-size:10px;font-weight:700;color:${A};margin-top:4px">Sacro — Sacro 1</div>
+      <div style="font-size:8.5px;line-height:10.5px;color:${GRAY};margin-top:5px;word-spacing:1px">Tipo: Ulcera da pressione &nbsp;&nbsp; · &nbsp;&nbsp; Origine: Domicilio/Comunità &nbsp;&nbsp; · &nbsp;&nbsp; Misure iniziali (alla presa in carico): 4,0 × 3,0 cm · prof. 5 mm &nbsp;(L×W stima 12,0 cm²)</div>
+      <div style="font-size:10px;line-height:12.5px;margin-top:4px">Prima rilevazione: 06/10/2026 — Ultima: 03/11/2026 — 5 medicazioni documentate</div>
+      <div style="height:6px"></div>
+      ${chrono}
+    </div>
+    <div class="ab" style="left:42px;top:812px;width:511px;height:.9px;background:${BORDER}"></div>
+    <div class="ab" style="right:42px;top:817px;font-size:8px;color:${GRAY}">Pag. 1</div>
+  </div>`;
+}
+function pdfPage2() {
+  const A = "#1A237E", GRAY = "#6B7280", DARK = "#243042", BORDER = "#D3D7E0";
+  const left = 42 + 22, plotW = 511 - 22, top = 64, chartH = 140, slot = plotW / 5, barW = 30;
+  let chart = "";
+  for (let v = 0; v <= 100; v += 25) {
+    const gy = top + chartH * (1 - v / 100);
+    chart += `<div class="ab" style="left:${left}px;top:${gy}px;width:${553 - left}px;height:.6px;background:${BORDER}"></div><div class="ab" style="left:44px;top:${gy - 4.5}px;font-size:7px;color:${GRAY}">${v}</div>`;
+  }
+  DRESS.forEach((d, i) => {
+    const cx = left + slot * i + slot / 2;
+    let base = top + chartH;
+    [[d.n, "#424242"], [d.s, "#FBC02D"], [d.g, "#E53935"], [d.e, "#E91E8C"]].forEach(([p, c]) => {
+      if (p <= 0) return;
+      const hh = chartH * p / 100;
+      chart += `<div class="ab" style="left:${cx - barW / 2}px;top:${base - hh}px;width:${barW}px;height:${hh}px;background:${c}"></div>`;
+      base -= hh;
+    });
+    chart += `<div class="ab" style="left:${cx - 20}px;width:40px;text-align:center;top:${top + chartH + 2}px;font-size:7px;color:${GRAY}">${d.d.slice(0, 5)}</div>`;
+  });
+  const leg = [["#424242", "Necrosi"], ["#FBC02D", "Slough"], ["#E53935", "Granulazione"], ["#E91E8C", "Epitelizzazione"]]
+    .map(([c, l]) => `<span style="display:inline-flex;align-items:center;gap:3px;margin-right:14px"><i style="display:block;width:7px;height:7px;background:${c}"></i>${l}</span>`).join("");
+  const d = DRESS[0];
+  return `<div class="pdfpage">
+    <div class="ab" style="left:42px;top:18px;font-size:8px;color:${GRAY}">Paziente A</div>
+    <div class="ab" style="right:42px;top:18px;font-size:8px;color:${GRAY}">Report lesioni</div>
+    <div class="ab" style="left:42px;top:32px;width:511px;height:.9px;background:${BORDER}"></div>
+    <div class="ab" style="left:42px;top:47px;font-size:9.5px;font-weight:700;color:${GRAY}">Composizione tessuti per data (%)</div>
+    ${chart}
+    <div class="ab" style="left:${left}px;top:${top + chartH + 14}px;font-size:7px;color:${GRAY};display:flex">${leg}</div>
+    <div class="ab" style="left:42px;top:${top + chartH + 34}px;font-size:9.5px;font-weight:700;color:${GRAY}">Sequenza fotografica (5 medicazioni)</div>
+    <div class="ab" style="left:42px;top:${top + chartH + 52}px;border:.9px solid ${BORDER}">${ph("Foto", 130, 97.5, { r: 0, icon: 26, labStyle: "font-size:8px" })}</div>
+    <div class="ab" style="left:42px;top:${top + chartH + 52 + 100}px;font-size:8.5px;font-weight:700;color:${DARK}">1.&nbsp;&nbsp;06/10/2026</div>
+    <div class="ab" style="left:42px;top:${top + chartH + 52 + 112}px;width:60px;height:6px;display:flex;border:.9px solid ${BORDER}"><i style="display:block;width:10%;background:#424242"></i><i style="display:block;width:40%;background:#FBC02D"></i><i style="display:block;width:50%;background:#E53935"></i></div>
+    <div class="ab" style="left:186px;top:${top + chartH + 52}px;width:367px;color:${DARK}">
+      <div style="font-size:10px;font-weight:700;color:${A};line-height:13px">Medicazione 1&nbsp;&nbsp;·&nbsp;&nbsp;06/10/2026 10:05</div>
+      <div style="font-size:8.5px;line-height:13px;color:${GRAY}">Tessuti: nero 10% · giallo 40% · rosso 50% · rosa 0%<br>Essudato: ${d.ex}<br>Dolore (NRS): ${d.pain}/10<br>Medicazione applicata: Idrofibra + Schiuma</div>
+    </div>
+  </div>`;
+}
+SCREENS.s12 = () => {
+  const s = 396 / 595, ph1 = 842 * s;
+  return phone(`
+    <div style="flex:1;background:#3C3D41;position:relative;overflow:hidden">
+      <div class="row" style="height:48px;background:#2B2C30;color:#E8EAED;padding:0 16px;gap:12px">${ic("pdf", 22, "#E8EAED")}<span style="font-size:14px;font-weight:500;letter-spacing:.2px">report_PA_20261103_1.pdf</span></div>
+      <div style="position:absolute;left:8px;top:56px;width:396px;height:${ph1}px;box-shadow:0 2px 6px rgba(0,0,0,.5)"><div style="transform:scale(${s});transform-origin:0 0">${pdfPage1()}</div></div>
+      <div style="position:absolute;left:8px;top:${56 + ph1 + 8}px;width:396px;height:${ph1}px;box-shadow:0 2px 6px rgba(0,0,0,.5)"><div style="transform:scale(${s});transform-origin:0 0">${pdfPage2()}</div></div>
+    </div>`, { statusBg: "#202124" });
+};
+
+/* 13 · Backup cifrato */
+SCREENS.s13 = () => phone(`${mdr()}${topBar("Crea backup", "")}
+    <div class="scrollwrap"><div class="col" style="padding:16px;gap:16px">
+      <div class="t-lsm onsv">WoundApp 1.6.4-docs (build 55)</div>
+      <div class="card" style="background:#F2F1FF;padding:16px;flex:none">
+        <div class="row">${ic("info", 24, C.primary)}<span class="t-tm f1" style="margin-left:8px">Informazioni</span>${ic("expless", 24, C.onSurface)}</div>
+        ${sp(8)}<div class="t-bs">Il backup include tutti i pazienti, le lesioni, le medicazioni, le scale di valutazione, le foto e il registro attività. Il file è protetto con crittografia AES-256.<br><br>Attenzione: il file di backup contiene dati sanitari sensibili. L'operatore è responsabile della custodia sicura del file esportato.</div>
+      </div>
+      <div class="card" style="background:${C.pc};padding:16px;flex:none">
+        <div class="row">${ic("checkcircle", 32, C.primary)}<span class="t-tm" style="margin-left:12px">Backup creato con successo!</span></div>
+        ${sp(16)}<div class="btn">${ic("download", 24, "#fff")}<span>Salva sul telefono</span></div>
+        ${sp(8)}<div class="btn outlined">${ic("share", 24, C.primary)}<span>Condividi (email, cloud, ecc.)</span></div>
+        ${sp(8)}<div style="text-align:right"><span class="tbtn">Chiudi</span></div>
+      </div>
+      <div class="card" style="padding:16px;flex:none">
+        <div class="row">${ic("cloudup", 24, C.primary)}<span class="t-tm" style="margin-left:8px">Crea backup</span></div>
+        ${sp(12)}${otf("Password backup (min 12 caratteri)", "••••••••••••••••", { trail: "visibility", bgc: "#E6E0E9" })}
+        ${sp(8)}${otf("Conferma password", "••••••••••••••••", { bgc: "#E6E0E9" })}
+        ${sp(12)}<div class="btn">${ic("save", 24, "#fff")}<span>Genera backup</span></div>
+      </div>
+    </div></div>`);
+
+/* Impostazioni */
+function settingsCards() {
+  const chip = (t, sel) => `<span class="chip ${sel ? "sel" : ""}">${t}</span>`;
+  const infoRow = (k, v) => `<div class="row" style="justify-content:space-between;padding:2px 0"><span class="t-bm onsv">${k}</span><span class="t-bm">${v}</span></div>`;
+  const ob = (icn, t) => `<div class="btn outlined">${ic(icn, 24, C.primary)}<span>${t}</span></div>`;
+  return `
+    <div class="card" style="padding:16px"><div class="t-tm">Lingua</div>${sp(8)}
+      <div style="display:flex;flex-wrap:wrap;column-gap:8px">${chip("Auto")}${chip("Italiano", true)}${chip("English")}${chip("Français")}${chip("Español")}</div></div>
+    <div class="card row" style="padding:16px">${ic("public", 24, C.onSurface)}<div style="margin-left:12px"><div class="t-tm">Area geografica / Giurisdizione</div><div class="t-bm onsv">Unione Europea / SEE</div></div></div>
+    <div class="card" style="padding:16px"><div class="t-tm">Informazioni App</div>${sp(8)}${infoRow("Nome", "WoundApp")}${infoRow("Versione", "1.6.4-docs (build 55)")}${infoRow("Tipo", "Strumento di documentazione clinica")}</div>
+    <div class="card" style="padding:16px"><div class="t-tm">Licenza d'uso</div>${sp(8)}<div class="t-bs">Gratuita per il singolo professionista sanitario, per la propria pratica clinica. È vietato l'uso da parte di aziende sanitarie, ospedali e qualsiasi altra organizzazione, pubblica o privata, senza accordo scritto con l'autore.</div>${sp(8)}<div class="t-bs onsv">Licenze istituzionali: dev.davide@pm.me</div></div>
+    <div class="card" style="padding:16px"><div class="t-bm">Hai trovato un errore o qualcosa non funziona? Scrivimi: ogni segnalazione aiuta a migliorare l'app.</div>${sp(12)}${ob("bug", "Segnala un problema")}</div>
+    <div class="card" style="padding:16px;background:#FAEFF3"><div class="t-tm">Avvertenze importanti</div>${sp(8)}<div class="t-bm">Questa applicazione è uno strumento di DOCUMENTAZIONE clinica per la registrazione e la consultazione cronologica delle lesioni cutanee. NON è un dispositivo medico, NON fornisce diagnosi, raccomandazioni terapeutiche o supporto decisionale clinico.</div>${sp(8)}<div class="t-bm">La composizione tissutale è inserita manualmente dall'operatore. Il professionista sanitario è l'unico responsabile di tutte le valutazioni e decisioni cliniche.</div></div>
+    <div class="card" style="padding:16px"><div class="t-tm">Privacy e Sicurezza</div>${sp(8)}<div class="t-bs">Tutti i dati sono archiviati esclusivamente sul dispositivo:<br>- Database cifrato AES-256 (SQLCipher)<br>- Fotografie cifrate AES-256-GCM<br>- Nessun dato trasmesso in rete<br>- Backup cloud disabilitato<br>- Autenticazione biometrica obbligatoria<br>- Blocco automatico dopo 5 minuti di inattività</div>${sp(12)}<div class="t-bs">Per eliminare i dati di un paziente, aprire la sua scheda e usare il pulsante elimina. Tutti i dati, le valutazioni e le foto cifrate verranno cancellati definitivamente.</div>${sp(12)}${ob("history", "Visualizza Registro Attività")}${sp(8)}${ob("cloudup", "Crea backup")}${sp(8)}${ob("restore", "Ripristina backup")}</div>
+    <div class="card" style="padding:16px"><div class="t-tm">Composizione Tissutale</div>${sp(8)}<div class="t-bs">La composizione tissutale è inserita manualmente dall'operatore tramite quattro slider (necrotico, fibrina, granulazione, epitelizzazione). Non viene eseguita alcuna analisi automatica delle immagini.</div></div>`;
+}
+function settingsScreen(offsetSel) {
+  return phone(`${mdr()}${topBar("Impostazioni", "")}
+    <div class="scrollwrap" style="margin-bottom:80px"><div class="col" id="setcol" data-offset="${offsetSel}" style="padding:16px;gap:16px">${settingsCards()}</div></div>
+    ${navBar(1)}`);
+}
+SCREENS.s14 = () => settingsScreen("top");
+SCREENS.s15 = () => settingsScreen("avvertenze");
+
+/* 16 · Registro attività */
+SCREENS.s16 = () => {
+  const ev = [
+    ["EXPORT_PDF", "03/11/2026 10:30:12", "Patient #1", ""],
+    ["CREATE_DRESSING", "03/11/2026 10:16:04", "DressingEvent #14", "Assessment=1, photo=3f6c1a2e-8b7d-4e15-a9c0-52d7e4b19f08.jpg.enc, extraPhotos=2"],
+    ["CREATE_PAIN_NRS", "03/11/2026 10:02:37", "PainNRSAssessment #9", "Score: 3"],
+    ["CREATE_NORTON", "03/11/2026 09:58:21", "NortonAssessment #8", "Score: 13"],
+    ["LOGIN", "03/11/2026 09:55:03", "SESSION #0", "Accesso autenticato"],
+    ["SESSION_TIMEOUT", "02/11/2026 18:42:50", "SESSION #0", "Sessione scaduta per inattività"],
+    ["BACKUP_CREATED", "02/11/2026 18:31:15", "BACKUP #0", "Backup creato"],
+    ["UPDATE_DRESSING", "02/11/2026 18:20:44", "DressingEvent #12", "date/notes edited"],
+    ["CREATE_ASSESSMENT", "02/11/2026 18:12:09", "WoundAssessment #3", "Patient=1, location=TORACE, name=Torace 1"],
+    ["CREATE_PATIENT", "02/11/2026 18:05:30", "Patient #3", ""]
+  ];
+  const cards = ev.map(([a, t, e, d]) => `<div class="card" style="margin:2px 16px;padding:12px;flex:none">
+      <div class="row" style="justify-content:space-between"><span class="t-ll prim">${a}</span><span class="t-lsm">${t}</span></div>
+      <div class="t-bs">${e}</div>${d ? `<div class="t-bs onsv" style="word-break:break-all">${d}</div>` : ""}</div>`).join("");
+  return phone(`${mdr()}<div style="flex:none">${topBar("Registro Attività", "", `<div class="iconbtn">${ic("filter", 24, C.onSv)}</div>`)}</div>
+    <div class="t-bs onsv" style="padding:4px 16px;flex:none">214 eventi registrati</div>
+    <div class="scrollwrap"><div class="col">${cards}</div></div>`);
+};
+
+/* ── Rendering per #hash ── */
+function render() {
+  const key = (location.hash || "#s01").slice(1);
+  const f = SCREENS[key] || SCREENS.s01;
+  document.getElementById("root").innerHTML = f();
+  applyGradients();
+  const sc = document.getElementById("setcol");
+  if (sc) {
+    if (sc.dataset.offset === "avvertenze") {
+      const cards = sc.children;
+      const target = cards[5]; // «Avvertenze importanti»
+      const off = target.offsetTop - 16;
+      sc.style.transform = `translateY(-${off}px)`;
+    }
+  }
+}
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>

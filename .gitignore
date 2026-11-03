@@ -1,0 +1,30 @@
+# Build artifacts
+build/
+app/build/
+
+# Local configuration (contains SDK path, never commit)
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.DS_Store
+
+# APK / AAB outputs
+*.apk
+*.aab
+*.aar
+
+# Gradle
+.gradle/
+gradle.properties.local
+
+# Keystore (mai committare credenziali di firma)
+*.jks
+*.keystore
+release/
+
+# Firma release (segreti, mai committare)
+keystore.properties
+*.jks
+*.keystore

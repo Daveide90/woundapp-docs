@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="md_primary">#FF3949AB</color>
+    <color name="md_on_primary">#FFFFFFFF</color>
+    <color name="md_primary_container">#FFDEE0FF</color>
+    <color name="md_secondary">#FF4A6267</color>
+    <color name="md_background">#FFFAFDFB</color>
+    <color name="md_surface">#FFFAFDFB</color>
+    <color name="md_error">#FFBA1A1A</color>
+    <color name="md_warning">#FFFF8800</color>
+    <color name="md_tissue_black">#FF1A1A1A</color>
+    <color name="md_tissue_yellow">#FFE6C619</color>
+    <color name="md_tissue_red">#FFCC3333</color>
+    <color name="md_tissue_pink">#FFFFB3BA</color>
+</resources>
