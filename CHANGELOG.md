@@ -5,6 +5,12 @@
 > la build più alta è la più recente. Versione e build sono riportati nel nome del file APK
 > (es. `WoundAppDocs_v1.0_build32.apk`) e in app (schermata Backup).
 
+## [1.6.8-docs] · 2026-11-06
+
+Versione **1.6.8-docs** (versionCode 59). Solo avvisi di licenza, nessun cambiamento clinico o di schema dati.
+
+- **Licenze di terzi nell'app.** In Impostazioni, sotto la licenza d'uso, il pulsante «Licenze di terzi» mostra autori, licenze, file NOTICE e testi completi dei componenti open source contenuti nell'APK (AndroidX, Kotlin, kotlinx.coroutines, Gson, Tink, Guava ListenableFuture, JSpecify, annotazioni JetBrains, SQLCipher per Android con SQLite e LibTomCrypt). Lo chiedono la licenza Apache 2.0 e le licenze BSD di SQLCipher e di ThreeTen (dentro la libreria standard di Kotlin). Lo stesso elenco è citato nel README.
+
 ## [1.6.7-docs] · 2026-11-03
 
 Versione **1.6.7-docs** (versionCode 58). Correzioni di sicurezza e di testo da una revisione esterna del codice (nessun cambiamento clinico o di schema dati).

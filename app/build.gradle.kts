@@ -24,8 +24,8 @@ android {
         targetSdk = 34
         // Numerazione progressiva: versionName = versione "commerciale" (v1.0);
         // versionCode = numero di build, +1 a ogni consegna (il più alto è il più recente).
-        versionCode = 58
-        versionName = "1.6.7-docs"
+        versionCode = 59
+        versionName = "1.6.8-docs"
     }
 
     signingConfigs {

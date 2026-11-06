@@ -136,6 +136,7 @@ object S {
         "Gratuita para el profesional sanitario individual, para su propia práctica clínica. Queda prohibido su uso por parte de empresas sanitarias, hospitales o cualquier otra organización pública o privada sin acuerdo escrito con el autor."
     )
     val licenseContact: String @Composable get() = loc("Licenze istituzionali: dev.davide@pm.me", "Institutional licenses: dev.davide@pm.me", "Licences institutionnelles : dev.davide@pm.me", "Licencias institucionales: dev.davide@pm.me")
+    val thirdPartyLicenses: String @Composable get() = loc("Licenze di terzi", "Third-party licenses", "Licences tierces", "Licencias de terceros")
     val reportBugText: String @Composable get() = loc(
         "Hai trovato un errore o qualcosa non funziona? Scrivimi: ogni segnalazione aiuta a migliorare l'app.",
         "Found a bug or something not working? Write to me: every report helps improve the app.",

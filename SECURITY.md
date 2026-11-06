@@ -1,6 +1,6 @@
 # Security Policy — WoundApp Docs
 
-**Versione app:** v1.6.7-docs (versionCode 58) · `com.daveide.wounddocs` · aggiornato a novembre 2026 (libreria del database: SQLCipher per Android 4.17.0, SQLite 3.53.3; dipendenze controllate sul database OSV il 3/11/2026)
+**Versione app:** v1.6.8-docs (versionCode 59) · `com.daveide.wounddocs` · aggiornato a novembre 2026 (libreria del database: SQLCipher per Android 4.17.0, SQLite 3.53.3; dipendenze controllate sul database OSV il 3/11/2026)
 
 > **EN summary** — Coordinated vulnerability disclosure for the WoundApp Docs repository and
 > APK. Report security issues to **dev.davide@pm.me**; expect an acknowledgement and initial

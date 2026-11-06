@@ -4,7 +4,7 @@
 
 A concept of how a wound documentation app should be: photos, measurements, dressings and scale scores over time, all on the phone. · Un concept di come dovrebbe essere un'app per documentare le lesioni: foto, misure, medicazioni e punteggi delle scale nel tempo, tutto sul telefono.
 
-Version 1.6.7-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
+Version 1.6.8-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
 
 <p align="center">
   <a href="https://github.com/Daveide90/woundapp-docs/releases/latest/download/WoundAppDocs.apk"><img src="docs/pulsante-download.svg" width="340" alt="Download APK · Scarica l'APK"></a>
@@ -102,7 +102,7 @@ Android Studio with JDK 17. Kotlin, Jetpack Compose, Material 3, Room with SQLCi
 
 ### Licence
 
-Proprietary licence ([LICENSE](LICENSE)): free for the individual healthcare professional (natural person) on their own devices; use by organisations requires a written agreement. All rights reserved. The changes from version to version are in the [CHANGELOG](CHANGELOG.md).
+Proprietary licence ([LICENSE](LICENSE)): free for the individual healthcare professional (natural person) on their own devices; use by organisations requires a written agreement. All rights reserved. The app uses third-party open source components that keep their own licences: Android Jetpack (AndroidX, Compose, Room), Kotlin and kotlinx.coroutines, Gson, Tink, Guava ListenableFuture, JSpecify and JetBrains annotations under the Apache License 2.0, and SQLCipher for Android under Zetetic's BSD-style licence. Authors, licence texts and NOTICE files are in the app (Settings › Third-party licenses) and in [app/src/main/assets/licenze/licenze_di_terzi.txt](app/src/main/assets/licenze/licenze_di_terzi.txt). The changes from version to version are in the [CHANGELOG](CHANGELOG.md).
 
 ### Feedback
 
@@ -181,7 +181,7 @@ Android Studio con JDK 17. Kotlin, Jetpack Compose, Material 3, Room con SQLCiph
 
 ### Licenza
 
-Licenza proprietaria ([LICENSE](LICENSE)): gratuita per il singolo professionista sanitario (persona fisica) sui propri dispositivi; l'uso da parte di strutture e organizzazioni richiede un accordo scritto. Tutti i diritti riservati. Le modifiche da una versione all'altra sono nel [CHANGELOG](CHANGELOG.md).
+Licenza proprietaria ([LICENSE](LICENSE)): gratuita per il singolo professionista sanitario (persona fisica) sui propri dispositivi; l'uso da parte di strutture e organizzazioni richiede un accordo scritto. Tutti i diritti riservati. L'app usa componenti open source di terzi che restano sotto le loro licenze: Android Jetpack (AndroidX, Compose, Room), Kotlin e kotlinx.coroutines, Gson, Tink, Guava ListenableFuture, JSpecify e le annotazioni JetBrains con licenza Apache 2.0, e SQLCipher per Android con la licenza in stile BSD di Zetetic. Autori, testi delle licenze e file NOTICE sono nell'app (Impostazioni › Licenze di terzi) e in [app/src/main/assets/licenze/licenze_di_terzi.txt](app/src/main/assets/licenze/licenze_di_terzi.txt). Le modifiche da una versione all'altra sono nel [CHANGELOG](CHANGELOG.md).
 
 ### Segnalazioni
 

@@ -39,6 +39,7 @@ fun SettingsScreen(
     val currentLang = LocalLanguage.current
     val savedPref = remember { AppPreferences.getLanguage(context) }
     var showCountryDialog by remember { mutableStateOf(false) }
+    var showThirdParty by remember { mutableStateOf(false) }
     // Giurisdizione corrente (fornita dal CompositionLocal: cambia se l'utente la aggiorna)
     val currentJurisdiction = LocalJurisdiction.current
 
@@ -172,6 +173,12 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    // Avvisi delle librerie di terzi: MIT, BSD e Apache chiedono che
+                    // accompagnino anche l'APK, non solo il codice sorgente
+                    OutlinedButton(onClick = { showThirdParty = true }) {
+                        Text(S.thirdPartyLicenses)
+                    }
                 }
             }
 
@@ -286,6 +293,37 @@ fun SettingsScreen(
             onDismiss = { showCountryDialog = false }
         )
     }
+
+    if (showThirdParty) {
+        ThirdPartyLicensesDialog(onDismiss = { showThirdParty = false })
+    }
+}
+
+/** Percorso negli asset del testo con autori, licenze e NOTICE dei componenti di terzi. */
+internal const val THIRD_PARTY_LICENSES_ASSET = "licenze/licenze_di_terzi.txt"
+
+@Composable
+private fun ThirdPartyLicensesDialog(onDismiss: () -> Unit) {
+    val context = LocalContext.current
+    val text = remember {
+        runCatching {
+            context.assets.open(THIRD_PARTY_LICENSES_ASSET).bufferedReader().use { it.readText() }
+        }.getOrDefault("")
+    }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(S.thirdPartyLicenses) },
+        text = {
+            Text(
+                text,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            )
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) { Text(S.close) }
+        }
+    )
 }
 
 /**
