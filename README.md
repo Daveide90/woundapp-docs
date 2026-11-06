@@ -4,7 +4,7 @@
 
 A concept of how a wound documentation app should be: photos, measurements, dressings and scale scores over time, all on the phone. · Un concept di come dovrebbe essere un'app per documentare le lesioni: foto, misure, medicazioni e punteggi delle scale nel tempo, tutto sul telefono.
 
-Version 1.6.8-docs · Android 11 or later recommended · not on Google Play: test builds are shared by hand.
+Version 1.6.9-docs · Android 11 or later · not on Google Play: test builds are shared by hand.
 
 <p align="center">
   <a href="https://github.com/Daveide90/woundapp-docs/releases/latest/download/WoundAppDocs.apk"><img src="docs/pulsante-download.svg" width="340" alt="Download APK · Scarica l'APK"></a>
@@ -55,7 +55,7 @@ WoundApp Docs is a concept: it shows, with software that works, how a wound docu
 
 **Who may use it.** The app suits a self-employed professional, who is the data controller. A nurse or doctor employed by a hospital or care home documents patients of that organisation, which is the data controller: using the app on a personal phone needs the organisation's authorisation and must follow its rules.
 
-Known issue: on Android 9 and 10 the app currently closes at start; use Android 11 or later.
+Android 11 or later is required: from 1.6.9 the app no longer installs on Android 8, 9 and 10, where it closed at start.
 
 The images on this page are an HTML mockup of the interface, not screenshots: the app blocks screen capture, to protect patient data.
 
@@ -86,7 +86,7 @@ Details in [SECURITY.md](SECURITY.md) and [PRIVACY_POLICY.md](PRIVACY_POLICY.md)
 
 ### Install
 
-Tap **Download APK** at the top of this page on an Android phone (Android 11 or later), open the file and, when Android asks, allow installation from your browser or file manager. The app is not on Google Play yet. The SHA-256 fingerprint of each APK is in the release notes, to check that the file is the original. If you have an earlier test build, make an encrypted backup, uninstall it and then install this one: the signature has changed.
+Tap **Download APK** at the top of this page on an Android phone (Android 11 or later), open the file and, when Android asks, allow installation from your browser or file manager. The app is not on Google Play yet. The SHA-256 fingerprint of each APK is in the release notes, to check that the file is the original. If you have a test build older than 1.6.4, make an encrypted backup, uninstall it and then install this one: the signature changed with 1.6.4. From 1.6.4 on, updates install over the previous version.
 
 ### About the author
 
@@ -102,7 +102,7 @@ Android Studio with JDK 17. Kotlin, Jetpack Compose, Material 3, Room with SQLCi
 
 ### Licence
 
-Proprietary licence ([LICENSE](LICENSE)): free for the individual healthcare professional (natural person) on their own devices; use by organisations requires a written agreement. All rights reserved. The app uses third-party open source components that keep their own licences: Android Jetpack (AndroidX, Compose, Room), Kotlin and kotlinx.coroutines, Gson, Tink, Guava ListenableFuture, JSpecify and JetBrains annotations under the Apache License 2.0, and SQLCipher for Android under Zetetic's BSD-style licence. Authors, licence texts and NOTICE files are in the app (Settings › Third-party licenses) and in [app/src/main/assets/licenze/licenze_di_terzi.txt](app/src/main/assets/licenze/licenze_di_terzi.txt). The changes from version to version are in the [CHANGELOG](CHANGELOG.md).
+Proprietary licence ([LICENSE](LICENSE)): free for the individual healthcare professional (natural person) on their own devices; use by organisations requires a written agreement. All rights reserved. The app uses third-party open source components that keep their own licences: Android Jetpack (AndroidX, Compose, Room), Kotlin and kotlinx.coroutines, Gson, Tink, Guava ListenableFuture, JSpecify and JetBrains annotations under the Apache License 2.0, and SQLCipher for Android under Zetetic's BSD-style licence; Tink contains a copy of Protocol Buffers (BSD 3-Clause). Authors, licence texts and NOTICE files are in the app (Settings › Third-party licenses) and in [app/src/main/assets/licenze/licenze_di_terzi.txt](app/src/main/assets/licenze/licenze_di_terzi.txt). The changes from version to version are in the [CHANGELOG](CHANGELOG.md).
 
 ### Feedback
 
@@ -134,7 +134,7 @@ WoundApp Docs è un concept: mostra, con un software che funziona, come dovrebbe
 
 **Chi può usarla.** L'app è adatta al libero professionista, che è titolare dei dati. L'infermiere o il medico dipendente di un ospedale o di una struttura documenta pazienti della struttura, che è la titolare: usare l'app sul telefono personale richiede l'autorizzazione della struttura e il rispetto delle sue regole.
 
-Problema noto: su Android 9 e 10 oggi l'app si chiude all'avvio; serve Android 11 o successivo.
+Serve Android 11 o successivo: dalla 1.6.9 l'app non si installa più su Android 8, 9 e 10, dove si chiudeva all'avvio.
 
 Le immagini di questa pagina sono un mockup HTML dell'interfaccia, non catture dello schermo: l'app impedisce di catturare lo schermo, per proteggere i dati dei pazienti.
 
@@ -165,7 +165,7 @@ Dettagli in [SECURITY.md](SECURITY.md) e [PRIVACY_POLICY.md](PRIVACY_POLICY.md).
 
 ### Installare
 
-Tocca **Download APK** in cima a questa pagina da un telefono Android (Android 11 o successivo), apri il file e, quando Android lo chiede, consenti l'installazione dal browser o dal gestore dei file. L'app non è ancora su Google Play. L'impronta SHA-256 di ogni APK è nelle note della release, per controllare che il file sia l'originale. Se hai una versione di prova precedente, fai un backup cifrato, disinstallala e poi installa questa: la firma è cambiata.
+Tocca **Download APK** in cima a questa pagina da un telefono Android (Android 11 o successivo), apri il file e, quando Android lo chiede, consenti l'installazione dal browser o dal gestore dei file. L'app non è ancora su Google Play. L'impronta SHA-256 di ogni APK è nelle note della release, per controllare che il file sia l'originale. Se hai una versione di prova precedente alla 1.6.4, fai un backup cifrato, disinstallala e poi installa questa: la firma è cambiata con la 1.6.4. Dalla 1.6.4 in poi gli aggiornamenti si installano sopra la versione precedente.
 
 ### Chi la sviluppa
 
@@ -181,7 +181,7 @@ Android Studio con JDK 17. Kotlin, Jetpack Compose, Material 3, Room con SQLCiph
 
 ### Licenza
 
-Licenza proprietaria ([LICENSE](LICENSE)): gratuita per il singolo professionista sanitario (persona fisica) sui propri dispositivi; l'uso da parte di strutture e organizzazioni richiede un accordo scritto. Tutti i diritti riservati. L'app usa componenti open source di terzi che restano sotto le loro licenze: Android Jetpack (AndroidX, Compose, Room), Kotlin e kotlinx.coroutines, Gson, Tink, Guava ListenableFuture, JSpecify e le annotazioni JetBrains con licenza Apache 2.0, e SQLCipher per Android con la licenza in stile BSD di Zetetic. Autori, testi delle licenze e file NOTICE sono nell'app (Impostazioni › Licenze di terzi) e in [app/src/main/assets/licenze/licenze_di_terzi.txt](app/src/main/assets/licenze/licenze_di_terzi.txt). Le modifiche da una versione all'altra sono nel [CHANGELOG](CHANGELOG.md).
+Licenza proprietaria ([LICENSE](LICENSE)): gratuita per il singolo professionista sanitario (persona fisica) sui propri dispositivi; l'uso da parte di strutture e organizzazioni richiede un accordo scritto. Tutti i diritti riservati. L'app usa componenti open source di terzi che restano sotto le loro licenze: Android Jetpack (AndroidX, Compose, Room), Kotlin e kotlinx.coroutines, Gson, Tink, Guava ListenableFuture, JSpecify e le annotazioni JetBrains con licenza Apache 2.0, e SQLCipher per Android con la licenza in stile BSD di Zetetic; Tink contiene una copia di Protocol Buffers (BSD a 3 clausole). Autori, testi delle licenze e file NOTICE sono nell'app (Impostazioni › Licenze di terzi) e in [app/src/main/assets/licenze/licenze_di_terzi.txt](app/src/main/assets/licenze/licenze_di_terzi.txt). Le modifiche da una versione all'altra sono nel [CHANGELOG](CHANGELOG.md).
 
 ### Segnalazioni
 

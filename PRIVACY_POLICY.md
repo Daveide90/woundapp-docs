@@ -65,7 +65,7 @@ Misure di sicurezza:
 - Timeout sessione: 5 minuti di inattivita
 - Nessuna comunicazione di rete
 - Backup automatico su Google Drive disabilitato
-- Screenshot bloccati (release)
+- Screenshot e registrazioni dello schermo bloccati
 - Audit log locale delle principali operazioni su pazienti e sessione
 
 ### 7. Trasferimento di dati
@@ -76,7 +76,7 @@ Esiste un **export manuale cifrato**: l'operatore puo, su sua esplicita azione, 
 
 ### 8. Conservazione
 
-I dati restano sul dispositivo finche il professionista sanitario non li elimina. La documentazione sanitaria e' soggetta agli obblighi nazionali di conservazione: in Italia la conservazione della documentazione clinica e' di **almeno 10 anni** (cfr. D.Lgs. 196/2003 e normativa sanitaria applicabile). La definizione dei tempi di conservazione spetta al titolare.
+I dati restano sul dispositivo finche il professionista sanitario non li elimina. La documentazione sanitaria e' soggetta agli obblighi di conservazione previsti dalle norme nazionali e dalle regole della struttura. La definizione dei tempi di conservazione spetta al titolare.
 
 ### 9. Diritti dell'interessato
 
@@ -160,7 +160,7 @@ Security measures:
 - Session timeout: 5 minutes of inactivity
 - No network communication
 - Automatic Google Drive backup disabled
-- Screenshots blocked (release builds)
+- Screenshots and screen recordings blocked
 - Local audit log of the main patient and session operations
 
 ### 7. Data transfers
@@ -171,7 +171,7 @@ A **manual encrypted export** exists: the operator may, upon explicit action, ex
 
 ### 8. Retention
 
-Data remains on the device until the healthcare professional deletes it. Medical documentation is subject to national retention obligations: in Italy, clinical documentation must be retained for **at least 10 years** (cf. Legislative Decree 196/2003 and applicable health regulations). Retention periods are defined by the controller.
+Data remains on the device until the healthcare professional deletes it. Medical documentation is subject to the retention obligations set by national law and by the organisation's rules. Retention periods are defined by the controller.
 
 ### 9. Data subject rights
 

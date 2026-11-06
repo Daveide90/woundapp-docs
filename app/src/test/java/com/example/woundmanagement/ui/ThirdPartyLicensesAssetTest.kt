@@ -27,6 +27,7 @@ class ThirdPartyLicensesAssetTest {
     fun containsBsdNoticesRequiredInBinaries() {
         assertTrue(text.contains("ZETETIC LLC"))
         assertTrue(text.contains("Stephen Colebourne & Michael Nascimento Santos"))
+        assertTrue(text.contains("Protocol Buffers (in Tink)") && text.contains("Copyright 2008 Google Inc."))
         assertTrue(text.contains("Redistributions in binary form must reproduce"))
     }
 

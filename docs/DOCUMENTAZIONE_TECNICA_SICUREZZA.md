@@ -52,7 +52,7 @@ Professionisti sanitari soggetti al segreto professionale ai sensi dell'Art. 9(3
 | Navigazione | Navigation Compose | 2.7.6 |
 | Foto | Selezione da galleria di sistema + cifratura all'import (nessuna libreria fotocamera) | — |
 | Build | AGP 8.2.0, Gradle 8.5 |
-| Min SDK | 26 (Android 8.0) |
+| Min SDK | 30 (Android 11) |
 | Target SDK | 34 (Android 14) |
 | Compile SDK | 34 |
 | Java | 17 |
@@ -290,7 +290,7 @@ L'informativa viene mostrata al primo avvio e deve essere accettata prima dell'u
 4. **Base giuridica** — Art. 9(2)(h) GDPR (assistenza sanitaria) + Art. 9(3) (segreto professionale)
 5. **Archiviazione e sicurezza** — Cifratura AES-256, autenticazione, no rete, audit log
 6. **Diritti dell'interessato** — Artt. 15–22 GDPR
-7. **Conservazione** — Riferimento alla conservazione della documentazione sanitaria per **almeno 10 anni** (D.Lgs. 196/2003 e normativa nazionale applicabile)
+7. **Conservazione** — Rimando agli obblighi di conservazione della documentazione sanitaria previsti dalle norme nazionali e dalle regole della struttura (dalla 1.6.9 senza un numero di anni né il rimando al D.Lgs. 196/2003, che non è la fonte dei tempi di conservazione)
 8. **Reclamo** — Diritto di reclamo al Garante per la protezione dei dati personali (art. 77 GDPR)
 9. **Decisioni automatizzate** — Statement esplicito: **nessuna decisione automatizzata ne' profilazione** (art. 22 GDPR)
 

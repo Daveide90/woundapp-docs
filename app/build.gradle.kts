@@ -20,12 +20,12 @@ android {
 
     defaultConfig {
         applicationId = "com.daveide.wounddocs"
-        minSdk = 26
+        minSdk = 30
         targetSdk = 34
         // Numerazione progressiva: versionName = versione "commerciale" (v1.0);
         // versionCode = numero di build, +1 a ogni consegna (il più alto è il più recente).
-        versionCode = 59
-        versionName = "1.6.8-docs"
+        versionCode = 60
+        versionName = "1.6.9-docs"
     }
 
     signingConfigs {

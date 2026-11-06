@@ -5,6 +5,15 @@
 > la build più alta è la più recente. Versione e build sono riportati nel nome del file APK
 > (es. `WoundAppDocs_v1.0_build32.apk`) e in app (schermata Backup).
 
+## [1.6.9-docs] · 2026-11-06
+
+Versione **1.6.9-docs** (versionCode 60). Correzioni da una revisione indipendente della pubblicazione; nessun cambiamento clinico o di schema dati.
+
+- **Serve Android 11 o successivo.** Il minimo passa da Android 8 (API 26) ad Android 11 (API 30): su Android 9 e 10 l'app si chiudeva all'avvio, e ora non si installa più dove non può funzionare.
+- **Protocol Buffers fra le licenze di terzi.** Tink contiene una copia di Protocol Buffers: la sua licenza BSD è ora in Impostazioni › Licenze di terzi.
+- **Nome sotto l'icona: «WoundApp Docs».**
+- **Testi allineati.** L'informativa dice che le catture dello schermo sono bloccate sempre (non solo nelle build di rilascio); la conservazione dei dati rimanda alle norme nazionali e alle regole della struttura, senza il numero di anni e senza il rimando al D.Lgs. 196/2003, che non ne è la fonte; il README spiega che la firma è cambiata con la 1.6.4 e che da allora gli aggiornamenti si installano sopra.
+
 ## [1.6.8-docs] · 2026-11-06
 
 Versione **1.6.8-docs** (versionCode 59). Solo avvisi di licenza, nessun cambiamento clinico o di schema dati.
